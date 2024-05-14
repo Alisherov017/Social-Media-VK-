@@ -1,0 +1,88 @@
+.vkCard {
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  margin-bottom: 20px;
+  width: 550px;
+  height: 700px;
+  padding-left: 20px;
+}
+
+.vkHeader {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.vkAvatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.vkUsername {
+  font-size: 16px;
+  font-weight: 500;
+  margin: 0;
+}
+
+.vkPostTime {
+  color: #777777;
+  font-size: 14px;
+  margin: 0;
+}
+
+.vkPostContent {
+  margin-bottom: 10px;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #333333;
+  width: 510px;
+  margin-left: 5px;
+  /* display: flex; */
+  /* width: 510px;
+  height: 510px; */
+}
+
+.vkPostImage {
+  border-radius: 8px;
+  margin-bottom: 10px;
+  width: 510px;
+  height: 510px;
+}
+
+.vkPostFooter {
+  display: flex;
+  align-items: center;
+}
+
+.vkLikeButton,
+.vkCommentButton,
+.vkShareButton {
+  border: none;
+  background-color: transparent;
+  color: #777777;
+  font-size: 14px;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+.vkLikeButton:hover,
+.vkCommentButton:hover,
+.vkShareButton:hover {
+  color: #0066cc;
+}
+
+.vkPostStats {
+  display: flex;
+  align-items: center;
+}
+
+.vkPostStats p {
+  margin: 0;
+  color: #777777;
+  font-size: 14px;
+  margin-right: 15px;
+}

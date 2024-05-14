@@ -1,10 +1,13 @@
 .navbar {
   display: flex;
-  width: 100%;
+  width: 1800px;
   height: 48px;
+  /* margin-left: -315px; */
+  background-color: #fff;
 }
+
 .left {
-    width: 35%;
+  width: 35%;
   align-items: center;
   display: flex;
 }
@@ -26,6 +29,12 @@
   align-items: center;
   position: relative;
   max-width: 2000px;
+}
+.nav_profil_img {
+  margin: 0;
+  height: 32px;
+  width: 32px;
+  border-radius: 50%;
 }
 
 .input {
@@ -52,4 +61,74 @@
   fill: #9e9ea7;
   width: 1rem;
   height: 1rem;
+}
+/* modal */
+.nav_r button {
+  border: none;
+  background-color: #ffff;
+  width: 68px;
+  height: 48px;
+  transition: 0.2s;
+}
+.nav_r button:hover {
+  background-color: rgb(223, 224, 226);
+}
+.overlow {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  overflow: hidden;
+}
+.modal {
+  position: absolute;
+  z-index: 2;
+  right: 200px;
+  background-color: #ffff;
+  width: 300px;
+  height: 250px;
+  box-shadow: 0 20px 40px 0 rgba(0, 0, 0, 0.3);
+  border-radius: 0 0 15px 15px;
+  transition: opacity 100ms linear, transform 100ms linear,
+    visibility 100ms linear;
+}
+.modal_top {
+  margin: 0 auto;
+  padding: 12px 6px;
+  border-radius: 5px;
+  height: 76px;
+  width: 276px;
+  display: flex;
+  background-color: rgb(234, 237, 239);
+}
+.modal_top img {
+  width: 40px;
+  border-radius: 50%;
+}
+.modal_bottom {
+  display: block;
+  width: 100%;
+  margin-top: 5px;
+}
+.modal_bottom a {
+  text-decoration: none;
+}
+.modal_links {
+  transition: 0.3s;
+  width: 93.2%;
+  padding: 10px;
+}
+
+.modal_links:hover {
+  background-color: #e0dfdf;
+}
+.modal_links span {
+  text-decoration: none;
+  color: black;
+  font-size: 13px;
+}
+.modal_links_ {
+  text-decoration: none;
 }

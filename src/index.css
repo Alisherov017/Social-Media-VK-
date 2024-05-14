@@ -1,6 +1,22 @@
 body {
   margin: 0;
-  background-color: #f0f0f0;
-  margin-left: 420px !important;
-  margin-top: 10px !important;
+  background-color: rgb(235, 237, 240);
+  margin-top: 48px;
+}
+
+.container__block {
+  width: 80%;
+  height: 80vh;
+  margin: 60px auto 0;
+
+  display: flex;
+  justify-content: space-between;
+}
+.sidebar__block {
+  width: 20%;
+  height: 100%;
+}
+.main__routes {
+  width: 75%;
+  height: 100%;
 }

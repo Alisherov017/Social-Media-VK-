@@ -4,7 +4,7 @@ import Post from "../../ui/posts/Post";
 
 const Photo = () => {
   return (
-    <div>
+    <div className={styles.photo}>
       <Post />
       <Post />
       <Post />

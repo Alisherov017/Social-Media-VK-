@@ -20,7 +20,7 @@ const LeftBar = () => {
     <div className={styles.LeftMenu}>
       <ul>
         <li className={styles.text}>
-          <Link to="/home">
+          <Link to="/">
             <PersonIcon />
             <>Моя страница</>
           </Link>

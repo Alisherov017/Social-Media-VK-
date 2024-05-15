@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "./nav.module.css";
 import { NavLink } from "react-router-dom";
+import LoginPage from "../../pages/auth/login/LoginPage";
 const NavbarLogin = () => {
   return (
     <div className={styles.navbar}>
@@ -12,9 +13,7 @@ const NavbarLogin = () => {
               alt=""
             />
           </NavLink>
-          <div className={styles.group}></div>
         </div>
-        <div className={styles.nav_r}></div>
       </div>
     </div>
   );

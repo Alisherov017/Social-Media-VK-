@@ -33,7 +33,7 @@ const LoginPage = () => {
             <button>Войти</button>
           </form>
           <div className={styles.login_links}>
-            <Link to={"/registor"}>
+            <Link to={"/register"}>
               <button>Создать аккаунт</button>
             </Link>
             <p>

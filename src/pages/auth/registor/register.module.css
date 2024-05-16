@@ -1,0 +1,40 @@
+.registor {
+  display: flex;
+  flex-direction: column;
+}
+.registor form {
+  width: 20vw;
+  height: 60vh;
+  margin: 45px auto;
+  background-color: #ffff;
+  border-radius: 12px;
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  
+}
+.registor h1 {
+  padding-top: 50px;
+}
+.registor input {
+  width: 85%;
+}
+.registor img {
+  width: 48px;
+  padding: 32px 135.5px 0 135.5px;
+}
+.registor p {
+  font-size: 13px;
+  text-align: center;
+  width: 20vw;
+  padding-left: 200px;
+}
+.button_back {
+  position: absolute;
+  top: 95px;
+  left: 50px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}

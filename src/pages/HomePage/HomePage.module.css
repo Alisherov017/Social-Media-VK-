@@ -1,7 +1,6 @@
 .profilePage {
   max-width: 900px;
   height: 190px;
-  /* margin: 0 auto; */
   padding: 20px;
   background-color: #fff;
   border-radius: 12px;
@@ -14,8 +13,8 @@
 }
 
 .profileImageContainer {
-  width: 150px;
-  height: 150px;
+  width: 160px;
+  height: 160px;
   border-radius: 50%;
   overflow: hidden;
   margin-right: 20px;
@@ -29,42 +28,59 @@
   object-fit: cover;
 }
 
-h1 {
-  margin-top: 20px;
-  font-size: 24px;
-  margin-bottom: 5px;
+.profileHeader h1 {
+  font-size: 21px;
+  margin-bottom: -2px;
   margin-top: -43px;
+  width: 300px;
 }
 
-p {
-  font-size: 18px;
-  margin-bottom: 10px;
-  margin-left: -200px;
+.two {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 15px;
+}
+
+.two .info {
+  margin-top: 11px;
+}
+
+.two small {
+  margin-left: -2px;
+  margin-top: 5px;
+  margin-right: 3px;
+}
+
+.two p {
+  color: #626d7a;
+  margin-top: 55px;
+  margin-left: -405px;
+}
+
+.two span {
+  margin-left: 18px;
+  margin-top: 43px;
+  color: #626d7a;
+  cursor: pointer;
+  display: flex;
 }
 
 .editProfileButton {
-  background-color: #2688eb;
-  color: #fff;
-  border: none;
+  font-size: 16px;
+  font-weight: 550;
   padding: 10px 20px;
+  background-color: #d0e0f5;
+  color: #233e74;
+  border: none;
   border-radius: 5px;
   text-decoration: none;
-  font-size: 16px;
   cursor: pointer;
-  margin-left: 373px;
+  margin-left: 120px;
 }
 
 .editProfileButton:hover {
-  background-color: #3770b1;
-}
-
-.profileInfo {
-  margin-bottom: 20px;
-}
-
-.profileInfo h2 {
-  font-size: 22px;
-  margin-bottom: 10px;
+  background-color: #bad5f9;
 }
 
 /* ! модалка */
@@ -72,30 +88,91 @@ p {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  width: 500px;
+  height: 360px;
   z-index: 1000;
+  background-color: #fff;
+  padding-left: 20px;
+  border-radius: 5px;
+  top: 16%;
+  left: 35%;
+  animation: slideIn 0.3s ease forwards;
 }
 
-.modal p {
-  margin-left: 0px;
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-40%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
-.modalContent {
-  background-color: #fff;
-  padding: 20px;
-  border-radius: 5px;
+
+.inf p {
+  margin-left: 11px;
+  margin-bottom: 0px;
+  color: rgb(66, 92, 122);
+  font-weight: 500;
+}
+
+.id {
+  margin-top: 15px;
+}
+
+.id p {
+  margin-left: 35px;
+  margin-top: -19px;
+}
+
+.id span {
+  font-weight: bold;
+  font-size: 20px;
+}
+.owerflow {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.586);
+  top: 0;
+  left: 0;
+  z-index: 6;
 }
 
 .closeModalButton {
+  border: none;
+  border-radius: 40%;
+  font-size: 17px;
+  padding: 0 5px;
+  background-color: rgba(0, 0, 0, 0.356);
+  width: 25px;
+  height: 25px;
+  position: absolute;
+  top: 0px;
+  right: -35px;
+  cursor: pointer;
+  color: #fff;
+}
+
+/* ! inside modal */
+.birthday {
+  display: flex;
+}
+
+.person {
+  display: flex;
+}
+
+.city {
+  display: flex;
+}
+
+.modalContent span {
   margin-top: 10px;
 }
 
-.detailsLink {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.modalContent p {
+  color: rgb(66, 92, 122);
+  font-weight: 500;
 }

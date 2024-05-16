@@ -1,17 +1,23 @@
 import React from "react";
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import Navbar from "../widgets/navbar/navbar";
 import LeftBar from "../widgets/leftBar/Leftbar";
 import { Home } from "@mui/icons-material";
 import NavbarLogin from "../widgets/navbar/NavbarLogin";
 import LoginPage from "../pages/auth/login/LoginPage";
+import RegisterPage from "../pages/auth/registor/RegisterPage";
 
 const MainLayout = () => {
   const tokens = localStorage.getItem("tokens");
+  const location = useLocation();
+  console.log(location);
+
   return (
     <>
       {tokens ? (
-        <LoginPage />
+        <>
+          {location.pathname === "/register" ? <RegisterPage /> : <LoginPage />}
+        </>
       ) : (
         <div>
           <Navbar />

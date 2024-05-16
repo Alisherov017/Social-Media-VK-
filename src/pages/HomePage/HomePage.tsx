@@ -1,22 +1,27 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import styles from "./HomePage.module.css";
+import LocationOnIcon from "@mui/icons-material/LocationOn";
+import InfoIcon from "@mui/icons-material/Info";
+import CakeIcon from "@mui/icons-material/Cake";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import HomeIcon from "@mui/icons-material/Home";
 
 const HomePage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [userData, setUserData] = useState({
-    name: "Имя Пользователя",
-    city: "Город",
+    name: "Acsdvdsvsdvdsv jnj",
+    city: "Bishkek",
     country: "Страна",
-    // Другие данные пользователя
+    phone: "+339 654987",
+    id: "4987",
+    birthday: "25 августа 2005 г.",
   });
 
-  // Обработчик открытия модального окна
   const openModal = () => {
     setIsModalOpen(true);
   };
 
-  // Обработчик закрытия модального окна
   const closeModal = () => {
     setIsModalOpen(false);
   };
@@ -32,27 +37,72 @@ const HomePage = () => {
           />
         </div>
         <h1>{userData.name}</h1>
-        <p>
-          Город <span onClick={openModal}>Подробнее</span>
-        </p>
+        <div className={styles.two}>
+          <p>
+            <>
+              <LocationOnIcon />
+            </>
+            <>{userData.city}</>
+          </p>
+
+          <span onClick={openModal}>
+            <small>
+              <InfoIcon />
+            </small>
+            <div className={styles.info}>Подробнее</div>
+          </span>
+        </div>
 
         <Link to="/edit-profile" className={styles.editProfileButton}>
           Редактировать профиль
         </Link>
       </div>
       {isModalOpen && (
-        <div className={styles.modal}>
-          <div className={styles.modalContent}>
-            <h2>Подробные данные пользователя</h2>
-            <p>Имя: {userData.name}</p>
-            <p>Город: {userData.city}</p>
-            <p>Страна: {userData.country}</p>
-            {/* Другие данные пользователя */}
+        <>
+          <div className={styles.modal}>
+            <div className={styles.modalContent}>
+              <div className={styles.header}>
+                <h4>Подробная информация</h4>
+              </div>
+              <hr />
+              <div className={styles.inf}>
+                <div className={styles.id}>
+                  <span>@</span>
+                  <p> {userData.id}</p>
+                </div>
+                <hr />
+
+                <div className={styles.person}>
+                  <span>
+                    <AccountCircleIcon />
+                  </span>
+                  <p>Имя: {userData.name}</p>
+                </div>
+
+                <div className={styles.birthday}>
+                  <span>
+                    <CakeIcon />
+                  </span>
+                  <p>День рождения: {userData.birthday}</p>
+                </div>
+
+                <div className={styles.city}>
+                  <span>
+                    <HomeIcon />
+                  </span>
+                  <p>Город: {userData.city}</p>
+                </div>
+                <hr />
+              </div>
+              <h4>Контактная информация</h4>
+              <p>Моб. телефон: {userData.phone}</p>
+            </div>
             <button className={styles.closeModalButton} onClick={closeModal}>
-              Закрыть
+              X
             </button>
           </div>
-        </div>
+          <div className={styles.owerflow} onClick={closeModal}></div>
+        </>
       )}
     </div>
   );

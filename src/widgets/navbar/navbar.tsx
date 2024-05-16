@@ -1,6 +1,12 @@
 import React, { useState } from "react";
 import styles from "./nav.module.css";
 import { Link, NavLink } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faCog,
+  faQuestionCircle,
+  faSignOutAlt,
+} from "@fortawesome/free-solid-svg-icons";
 
 const Navbar = () => {
   const [module, setModule] = useState(false);
@@ -71,18 +77,21 @@ const Navbar = () => {
             <div className={styles.modal_bottom}>
               <Link to={"https://vk.com/settings"}>
                 <div className={styles.modal_links}>
-                  <span className={styles.modal_links_}>Настройки</span>
+                  <FontAwesomeIcon icon={faCog} />
+                  <span className={styles.modal_links_}> Настройки</span>
                 </div>
               </Link>
               <Link to={"https://vk.com/support?act=home"}>
                 <div className={styles.modal_links}>
-                  <span className={styles.modal_links_}>Помощь</span>
+                  <FontAwesomeIcon icon={faQuestionCircle} />
+                  <span className={styles.modal_links_}> Помощь</span>
                 </div>
               </Link>
               <Link to={"/"}>
                 <div className={styles.modal_links}>
-                  {" "}
-                  <span className={styles.modal_links_}>Выйти</span>
+                  <FontAwesomeIcon icon={faSignOutAlt}  />
+
+                  <span className={styles.modal_links_}> Выйти</span>
                 </div>
               </Link>
             </div>

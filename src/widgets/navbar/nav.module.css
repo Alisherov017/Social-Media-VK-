@@ -108,7 +108,7 @@
   border-radius: 0 0 15px 15px;
   /* Применяем анимацию */
   animation: slideIn 0.3s ease forwards;
-  padding-top:10px ;
+  padding-top: 10px;
 }
 .modal_top {
   margin: 0 auto;
@@ -135,6 +135,8 @@
   transition: 0.3s;
   width: 93.2%;
   padding: 10px;
+  align-items: center;
+  padding-right: 10px;
 }
 
 .modal_links:hover {
@@ -147,4 +149,8 @@
 }
 .modal_links_ {
   text-decoration: none;
+}
+
+.modal_bottom svg {
+  color: rgb(68, 123, 186)  ;
 }

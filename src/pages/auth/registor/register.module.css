@@ -4,7 +4,7 @@
 }
 .registor form {
   width: 20vw;
-  height: 60vh;
+  height: 70vh;
   margin: 45px auto;
   background-color: #ffff;
   border-radius: 12px;
@@ -12,23 +12,33 @@
   display: flex;
   flex-direction: column;
   text-align: center;
-  
-}
-.registor h1 {
-  padding-top: 50px;
 }
 .registor input {
-  width: 85%;
+  width: 95%;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin: 5px auto;
+}
+.registor span{
+    padding-bottom: 25px;
+    color: rgba(0, 0, 0, 0.608);
 }
 .registor img {
   width: 48px;
-  padding: 32px 135.5px 0 135.5px;
+  padding: 10% 40% 0 40%;
 }
 .registor p {
   font-size: 13px;
   text-align: center;
   width: 20vw;
-  padding-left: 200px;
+  color: rgba(0, 0, 0, 0.408);
+  font-weight: 400;
+}
+.registor button{
+    width: 101%;
+    margin: auto;
+    
 }
 .button_back {
   position: absolute;

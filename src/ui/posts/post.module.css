@@ -4,15 +4,19 @@
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   padding: 15px;
   margin-bottom: 20px;
-  width: 550px;
+  width: 520px;
   height: 730px;
   padding-left: 20px;
 }
 
 .vkHeader {
   display: flex;
-  align-items: center;
   margin-bottom: 10px;
+  justify-content: space-between;
+}
+.vkHeader .beka {
+  display: flex;
+  width: 40%;
 }
 
 .vkAvatar {
@@ -41,9 +45,6 @@
   color: #333333;
   width: 510px;
   margin-left: 5px;
-  /* display: flex; */
-  /* width: 510px;
-  height: 510px; */
 }
 
 .vkPostImage {
@@ -116,4 +117,55 @@
 
 .vkSubmitButton {
   color: #777777;
+}
+
+.three svg {
+  display: flex;
+  justify-content: flex-end;
+  margin-left: 0;
+  cursor: pointer;
+}
+
+.deledit {
+  background-color: #985858;
+}
+
+/* ! little modal */
+.modalOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 115%;
+  height: 45%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal {
+  background-color: white;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 9;
+}
+
+.modal p {
+  cursor: pointer;
+  padding: 10px 0;
+  margin: 0;
+  border-bottom: 1px solid #ccc;
+}
+
+.modal p:last-child {
+  border-bottom: none;
+}
+
+.owerflow {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  z-index: 6;
 }

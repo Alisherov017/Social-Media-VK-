@@ -7,10 +7,20 @@ import CakeIcon from "@mui/icons-material/Cake";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import HomeIcon from "@mui/icons-material/Home";
 
+interface UserData {
+  name: string;
+  city: string;
+  country: string;
+  phone: string;
+  id: string;
+  birthday: string;
+}
+
 const HomePage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [userData, setUserData] = useState({
-    name: "Acsdvdsvsdvdsv jnj",
+
+  const [userData, setUserData] = useState<UserData>({
+    name: "Алишеров Руслан",
     city: "Bishkek",
     country: "Страна",
     phone: "+339 654987",
@@ -53,7 +63,7 @@ const HomePage = () => {
           </span>
         </div>
 
-        <Link to="/edit-profile" className={styles.editProfileButton}>
+        <Link to="/editHome" className={styles.editProfileButton}>
           Редактировать профиль
         </Link>
       </div>

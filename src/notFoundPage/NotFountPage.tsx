@@ -1,9 +1,7 @@
-import React from 'react'
+import React from "react";
 
 const NotFountPage = () => {
-  return (
-    <div>NotFountPage</div>
-  )
-}
+  return <div>NotFountPage</div>;
+};
 
-export default NotFountPage
+export default NotFountPage;

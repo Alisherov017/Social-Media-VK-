@@ -68,8 +68,10 @@ const LeftBar = () => {
           </Link>
         </li>
         <li>
-          <SportsEsportsIcon />
-          <>Игры</>
+          <Link to={"/game"}>
+            <SportsEsportsIcon />
+            <>Игры</>
+          </Link>
         </li>
         <hr />
         <li>

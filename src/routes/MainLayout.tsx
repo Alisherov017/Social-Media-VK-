@@ -10,7 +10,6 @@ import RegisterPage from "../pages/auth/registor/RegisterPage";
 const MainLayout = () => {
   const tokens = localStorage.getItem("tokens");
   const location = useLocation();
-  console.log(location);
 
   return (
     <>

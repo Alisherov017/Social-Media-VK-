@@ -27,7 +27,7 @@
 }
 .login_left img {
   width: 350px;
-  padding: 32px 0 0;
+  padding: 32px 0 0 0;
 }
 .buttons {
   width: 500px;
@@ -41,11 +41,39 @@
 }
 .form_login {
   width: 290px;
-  height: 200px;
+  height: 240px;
   background-color: #ffff;
   border-radius: 12px;
   text-align: center;
   padding: 32px 24px;
+}
+.form_login input {
+  width: 95%;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin:3px auto;
+}
+
+.form_login button {
+  margin: 10px auto;
+  width: 95%;
+  font-size: 14px;
+  font-weight: 500;
+}
+.btn_login {
+  padding: 10px;
+  background: none;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: 0.5s;
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.46);
+  font-size: 15px;
+}
+.btn_login:hover {
+  background-color: rgb(200, 201, 204);
 }
 .login_links {
   margin-top: 15px;
@@ -59,7 +87,11 @@
 .login_links p {
   font-size: 13px;
   width: 272px;
-  padding-left: 205px;
+}
+.login_links button {
+  margin: auto;
+  width: 95%;
+  font-size: 14px;
 }
 .login_right a {
   font-size: 13px;
@@ -70,7 +102,7 @@
 }
 .form_login h2 {
   font-size: 20px;
-  padding: 16px 0 20px;
+padding: 10px;
 }
 .login_right img {
   width: 48px;
@@ -81,6 +113,9 @@
   height: 8vh;
   justify-content: space-around;
   font-size: 13px;
+  margin-top: 60px;
+  align-items: end;
+  padding-bottom: 15px;
 }
 .footer_links {
   width: 30%;

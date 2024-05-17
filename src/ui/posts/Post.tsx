@@ -4,8 +4,18 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
 import SendIcon from "@mui/icons-material/Send";
 import PresentToAllIcon from "@mui/icons-material/PresentToAll";
+import MoreVertIcon from "@mui/icons-material/MoreVert";
 
 const Post = () => {
+  const [isFunc, setIsFunc] = useState(false);
+  const handleThree = () => {
+    setIsFunc(true);
+  };
+
+  const closeModal = () => {
+    setIsFunc(false);
+  };
+
   const [isCommenting, setIsCommenting] = useState(false);
   const [comment, setComment] = useState("");
 
@@ -30,13 +40,19 @@ const Post = () => {
   return (
     <div className={styles.vkCard}>
       <div className={styles.vkHeader}>
-        <img
-          src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
-          className={styles.vkAvatar}
-        />
-        <div className={styles.vkUserDetails}>
-          <h3 className={styles.vkUsername}>Имя пользователя</h3>
-          <p className={styles.vkPostTime}>20 часов назад</p>
+        <div className={styles.beka}>
+          <img
+            src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
+            className={styles.vkAvatar}
+          />
+          <div className={styles.vkUserDetails}>
+            <h3 className={styles.vkUsername}>Имя пользователя</h3>
+            <p className={styles.vkPostTime}>20 часов назад</p>
+          </div>
+        </div>
+
+        <div className={styles.three} onMouseEnter={handleThree}>
+          <MoreVertIcon />
         </div>
       </div>
       <p className={styles.vkPostContent}>
@@ -77,6 +93,18 @@ const Post = () => {
             <PresentToAllIcon />
           </button>
         </form>
+      )}
+
+      {isFunc && (
+        <>
+          <div className={styles.modalOverlay}>
+            <div className={styles.modal}>
+              <p onClick={() => console.log("Удалить")}>Удалить</p>
+              <p onClick={() => console.log("Редактировать")}>Редактировать</p>
+            </div>
+          </div>
+          <div className={styles.owerflow} onClick={closeModal}></div>
+        </>
       )}
     </div>
   );

@@ -1,6 +1,6 @@
 import React, { useState, ChangeEvent, FormEvent } from "react";
-import styles from "./editedHome.module.css";
-import Button from "../../../ui/Button/Button";
+import styles from "./addPost.module.css";
+import Button from "../../ui/Button/Button";
 
 interface FormData {
   name: string;
@@ -12,15 +12,15 @@ interface FormData {
   city: string;
 }
 
-const EditedPage: React.FC = () => {
+const AddPost: React.FC = () => {
   const [formData, setFormData] = useState<FormData>({
-    name: "Алишеров Руслан",
+    name: "",
     title: "",
-    mobilePhone: "+339 654987",
+    mobilePhone: "",
     email: "",
-    password: "12345665",
-    birthday: "25 августа 2005 г.",
-    city: "Bishkek",
+    password: "",
+    birthday: "",
+    city: "",
   });
 
   const [photo, setPhoto] = useState<string | ArrayBuffer | null>(null);
@@ -45,13 +45,13 @@ const EditedPage: React.FC = () => {
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // Logic to save the updated user data
-    console.log("Updated User Data:", formData);
+    // Logic to save the new user data
+    console.log("New User Data:", formData);
   };
 
   return (
-    <div className={styles.editProfilePage}>
-      <h1>Редактировать профиль</h1>
+    <div className={styles.addProfilePage}>
+      <h1>Добавить пост </h1>
       <form onSubmit={handleSubmit}>
         <div className={styles.photoSection}>
           <img
@@ -69,8 +69,8 @@ const EditedPage: React.FC = () => {
             onChange={handlePhotoChange}
             className={styles.photoInput}
           />
-          <div className={styles.change}>
-            <Button>Изменить фото</Button>
+          <div className={styles.cusBut}>
+            <Button>ЗАГРУЗИТЬ ФОТО</Button>
           </div>
         </div>
 
@@ -144,15 +144,13 @@ const EditedPage: React.FC = () => {
             onChange={handleChange}
           />
         </div>
-
-        <div className={styles.buttons}>
+        <div className={styles.cusBut}>
           <Button>Отменить</Button>
-          <Button>Сохранить</Button>
-          {/* <div className={styles.} ></div> */}
+          <Button>Добавить</Button>
         </div>
       </form>
     </div>
   );
 };
 
-export default EditedPage;
+export default AddPost;

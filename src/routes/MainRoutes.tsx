@@ -7,6 +7,7 @@ import LoginPage from "../pages/auth/login/LoginPage";
 import HomePage from "../pages/HomePage/HomePage";
 import Photo from "../pages/photoPage/Photo";
 import EditedPage from "../pages/HomePage/editedHome/EditedPage";
+import AddPost from "../pages/addPost/addPost";
 
 export const router = createBrowserRouter([
   {
@@ -20,6 +21,7 @@ export const router = createBrowserRouter([
       { path: "/photo", element: <Photo /> },
       { path: "/register", element: <RegisterPage /> },
       { path: "/editHome", element: <EditedPage /> },
+      { path: "/addPost", element: <AddPost /> },
     ],
   },
 ]);

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./nav.module.css";
 import { Link, NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -8,12 +8,28 @@ import {
   faSignOutAlt,
 } from "@fortawesome/free-solid-svg-icons";
 
+import { logout } from "../../store/slices/user.slice";
+import { useAppDispatch, useAppSelector } from "../../helpers/Hooks";
+import { getCurrentUser } from "../../store/actions/user.actions";
+
 const Navbar = () => {
+  const dispatch = useAppDispatch();
+  const { user } = useAppSelector((state) => state.users);
+  const tokens = localStorage.getItem("tokens");
   const [module, setModule] = useState(false);
 
+  useEffect(() => {
+    tokens && dispatch(getCurrentUser());
+  }, [dispatch]);
+
+  console.log(user);
   const openModule = () => {
     setModule(true);
   };
+  function onClickExit() {
+    window.location.reload();
+    dispatch(logout());
+  }
 
   const closeModule = () => {
     setModule(false);
@@ -87,13 +103,13 @@ const Navbar = () => {
                   <span className={styles.modal_links_}> Помощь</span>
                 </div>
               </Link>
-              <Link to={"/"}>
+              <button onClick={onClickExit} className={styles.btn_exit}>
                 <div className={styles.modal_links}>
-                  <FontAwesomeIcon icon={faSignOutAlt}  />
+                  <FontAwesomeIcon icon={faSignOutAlt} />
 
                   <span className={styles.modal_links_}> Выйти</span>
                 </div>
-              </Link>
+              </button>
             </div>
           </div>
           <div className={styles.overlow} onClick={closeModule}></div>

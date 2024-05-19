@@ -1,5 +1,5 @@
+// user.slice.ts
 import { createSlice } from "@reduxjs/toolkit";
-
 import { ProfileType } from "../../types";
 import { getCurrentUser } from "../actions/user.actions";
 
@@ -40,3 +40,5 @@ export const usersSlice = createSlice({
 });
 
 export const { setError, logout } = usersSlice.actions;
+
+export default usersSlice.reducer;

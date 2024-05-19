@@ -76,7 +76,8 @@
   border-radius: 5px;
   text-decoration: none;
   cursor: pointer;
-  margin-left: 120px;
+  /* margin-left: 120px; */
+  
 }
 
 .editProfileButton:hover {
@@ -175,4 +176,9 @@
 .modalContent p {
   color: rgb(66, 92, 122);
   font-weight: 500;
+}
+.buttons {
+  display: block;
+  width: 30%;
+  
 }

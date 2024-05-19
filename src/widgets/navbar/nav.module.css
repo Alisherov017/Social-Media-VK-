@@ -152,5 +152,12 @@
 }
 
 .modal_bottom svg {
-  color: rgb(68, 123, 186)  ;
+  color: rgb(68, 123, 186);
+}
+.btn_exit {
+  border: none;
+  background: none;
+  width: 100%;
+  text-align: left;
+  padding: 0;
 }

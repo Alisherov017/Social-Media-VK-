@@ -3,24 +3,14 @@ import styles from "./addPost.module.css";
 import Button from "../../ui/Button/Button";
 
 interface FormData {
-  name: string;
   title: string;
-  mobilePhone: string;
-  email: string;
-  password: string;
-  birthday: string;
-  city: string;
+  description: string;
 }
 
 const AddPost: React.FC = () => {
   const [formData, setFormData] = useState<FormData>({
-    name: "",
+    description: "",
     title: "",
-    mobilePhone: "",
-    email: "",
-    password: "",
-    birthday: "",
-    city: "",
   });
 
   const [photo, setPhoto] = useState<string | ArrayBuffer | null>(null);
@@ -60,7 +50,6 @@ const AddPost: React.FC = () => {
                 ? photo.toString()
                 : "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
             }
-            alt="Profile"
             className={styles.profilePhoto}
           />
           <input
@@ -75,75 +64,17 @@ const AddPost: React.FC = () => {
         </div>
 
         <div className={styles.formGroup}>
-          <label htmlFor="name">Имя:</label>
+          <label htmlFor="name">Описание: </label>
           <input
             type="text"
             id="name"
             name="name"
-            value={formData.name}
+            value={formData.description}
             onChange={handleChange}
             required
           />
         </div>
 
-        <div className={styles.formGroup}>
-          <label htmlFor="birthday">День рождения:</label>
-          <input
-            type="text"
-            id="birthday"
-            name="birthday"
-            value={formData.birthday}
-            onChange={handleChange}
-            required
-          />
-        </div>
-
-        <div className={styles.formGroup}>
-          <label htmlFor="city">Город:</label>
-          <input
-            type="text"
-            id="city"
-            name="city"
-            value={formData.city}
-            onChange={handleChange}
-            required
-          />
-        </div>
-
-        <div className={styles.formGroup}>
-          <label htmlFor="mobilePhone">Моб. телефон:</label>
-          <input
-            type="text"
-            id="mobilePhone"
-            name="mobilePhone"
-            value={formData.mobilePhone}
-            onChange={handleChange}
-            required
-          />
-        </div>
-
-        <div className={styles.formGroup}>
-          <label htmlFor="password">Пароль:</label>
-          <input
-            type="password"
-            id="password"
-            name="password"
-            value={formData.password}
-            onChange={handleChange}
-            required
-          />
-        </div>
-
-        <div className={styles.formGroup}>
-          <label htmlFor="email">Email:</label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-          />
-        </div>
         <div className={styles.cusBut}>
           <Button>Отменить</Button>
           <Button>Добавить</Button>

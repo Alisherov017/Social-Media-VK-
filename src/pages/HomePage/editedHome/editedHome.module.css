@@ -1,6 +1,8 @@
 .editProfilePage {
+
   max-width: 600px;
   margin: 0 5px;
+
   padding: 2rem;
   background-color: #f9f9f9;
   border-radius: 10px;
@@ -9,7 +11,7 @@
 
 .editProfilePage h1 {
   text-align: center;
-  margin-bottom: 1.5rem;
+  font-size: 24px;
 }
 
 .photoSection {
@@ -20,8 +22,8 @@
 }
 
 .profilePhoto {
-  width: 100px;
-  height: 100px;
+  width: 150px;
+  height: 150px;
   border-radius: 50%;
   object-fit: cover;
 }
@@ -64,7 +66,11 @@
 
 .buttons {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
+}
+
+.change {
+  margin-top: 10px;
 }
 
 .cancelButton,

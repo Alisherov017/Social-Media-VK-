@@ -16,6 +16,7 @@ function HandleLogout() {
 }
 
 $axios.interceptors.request.use(async (config) => {
+  //
   config.baseURL = "http://34.173.115.25/api/v1";
   const tokens = JSON.parse(localStorage.getItem("tokens") as string);
   if (tokens) {

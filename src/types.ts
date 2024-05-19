@@ -13,3 +13,21 @@ export interface ProfileType {
   id: number;
   email: string;
 }
+
+export type FormDatas = {
+  description: string;
+  title: string;
+  image: null | File;
+};
+
+export type ProductType = {
+  id: number;
+  title: string;
+  description: string;
+  image: string;
+  author: string;
+  reviews: any[];
+  likes: number;
+  is_author: boolean;
+  liked_by_user: boolean;
+};

@@ -1,49 +1,42 @@
 import React, { useState, ChangeEvent, FormEvent } from "react";
 import styles from "./addPost.module.css";
 import Button from "../../ui/Button/Button";
-
-interface FormData {
-  title: string;
-  description: string;
-}
+import { FormDatas } from "../../types";
+import { useAppDispatch } from "../helpers/hooks";
+import { useNavigate } from "react-router-dom";
+import { addProduct } from "../../store/actions/post.actions";
 
 const AddPost: React.FC = () => {
-  const [formData, setFormData] = useState<FormData>({
+  const [product, setProduct] = useState<FormDatas>({
     description: "",
     title: "",
+    image: null,
   });
+
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+  console.log(product);
 
   const [photo, setPhoto] = useState<string | ArrayBuffer | null>(null);
 
-  const handleChange = (
-    e: ChangeEvent<HTMLInputElement | HTMLSelectElement>
-  ) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
-
-  const handlePhotoChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = () => {
-        setPhoto(reader.result);
-      };
-      reader.readAsDataURL(file);
+  function handleChange(e: ChangeEvent<HTMLInputElement>) {
+    const { value, name, files } = e.target;
+    if (name === "image" && files) {
+      setProduct({ ...product, [name]: files[0] });
+    } else {
+      setProduct({ ...product, [name]: value });
     }
-  };
+  }
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    // Logic to save the new user data
-    console.log("New User Data:", formData);
-  };
-
+    dispatch(addProduct({ product, navigate }));
+  }
   return (
     <div className={styles.addProfilePage}>
-      <h1>Добавить пост </h1>
+      <h1>Добавить пост</h1>
       <form onSubmit={handleSubmit}>
-        <div className={styles.photoSection}>
+        {/* <div className={styles.photoSection}>
           <img
             src={
               photo
@@ -51,25 +44,39 @@ const AddPost: React.FC = () => {
                 : "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
             }
             className={styles.profilePhoto}
+            alt="Profile"
           />
           <input
             type="file"
             accept="image/*"
-            onChange={handlePhotoChange}
+            name="image"
+            onChange={handleChange}
             className={styles.photoInput}
           />
           <div className={styles.cusBut}>
             <Button>ЗАГРУЗИТЬ ФОТО</Button>
           </div>
+        </div> */}
+
+        <div className={styles.formGroup}>
+          <label htmlFor="description">фото: </label>
+          <input
+            accept="image/*"
+            onChange={handleChange}
+            name="image"
+            type="file"
+            placeholder="image"
+            required
+          />
         </div>
 
         <div className={styles.formGroup}>
-          <label htmlFor="name">Описание: </label>
+          <label htmlFor="description">Описание: </label>
           <input
             type="text"
-            id="name"
-            name="name"
-            value={formData.description}
+            id="description"
+            name="description"
+            value={product.description}
             onChange={handleChange}
             required
           />

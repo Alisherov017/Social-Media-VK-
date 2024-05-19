@@ -40,6 +40,8 @@ const RegisterPage = () => {
     navigate("/");
     dispatch(registerUser({ data: user, navigate }));
   }
+  console.log(user);
+
   function handleChange(e: ChangeEvent<HTMLInputElement>) {
     const { name, value } = e.target;
     setUser({ ...user, [name]: value });

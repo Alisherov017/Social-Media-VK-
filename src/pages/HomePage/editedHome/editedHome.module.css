@@ -1,7 +1,8 @@
 .editProfilePage {
-  max-width: 450px;
-  /* margin: 0 auto; */
-  margin-left: 20px;
+
+  max-width: 600px;
+  margin: 0 5px;
+
   padding: 2rem;
   background-color: #f9f9f9;
   border-radius: 10px;

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import styles from "./HomePage.module.css";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
@@ -6,6 +6,8 @@ import InfoIcon from "@mui/icons-material/Info";
 import CakeIcon from "@mui/icons-material/Cake";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import HomeIcon from "@mui/icons-material/Home";
+import { useAppDispatch, useAppSelector } from "../helpers/hooks";
+import { getCurrentUser } from "../../store/actions/user.actions";
 
 interface UserData {
   name: string;
@@ -28,6 +30,15 @@ const HomePage = () => {
     birthday: "25 августа 2005 г.",
   });
 
+  const dispatch = useAppDispatch();
+  const { user } = useAppSelector((state) => state.users);
+  const tokens = localStorage.getItem("tokens");
+  useEffect(() => {
+    tokens && dispatch(getCurrentUser());
+  }, [dispatch]);
+
+  console.log(user);
+
   const openModal = () => {
     setIsModalOpen(true);
   };
@@ -46,7 +57,7 @@ const HomePage = () => {
             className={styles.profileImage}
           />
         </div>
-        <h1>{userData.name}</h1>
+        {user && <h1>{user.email}</h1>}
         <div className={styles.two}>
           <p>
             <>
@@ -63,16 +74,11 @@ const HomePage = () => {
           </span>
         </div>
 
-        <div className={styles.buttonss}>
+        <div className={styles.buttons}>
           <Link to="/editHome" className={styles.editProfileButton}>
             Редактировать профиль
           </Link>
-          <Link
-            to="/addPost"
-            className={`${styles.editProfileButton} ${styles.only}`}
-          >
-            Добавить пост
-          </Link>
+
         </div>
       </div>
       {isModalOpen && (
@@ -86,7 +92,7 @@ const HomePage = () => {
               <div className={styles.inf}>
                 <div className={styles.id}>
                   <span>@</span>
-                  <p> {userData.id}</p>
+                  {user && <p>id{user.id}</p>}
                 </div>
                 <hr />
 
@@ -94,7 +100,7 @@ const HomePage = () => {
                   <span>
                     <AccountCircleIcon />
                   </span>
-                  <p>Имя: {userData.name}</p>
+                  {user && <p>Name: {user.email}</p>}
                 </div>
 
                 <div className={styles.birthday}>

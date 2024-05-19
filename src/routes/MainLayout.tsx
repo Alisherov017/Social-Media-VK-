@@ -13,7 +13,7 @@ const MainLayout = () => {
 
   return (
     <>
-      {tokens ? (
+      {!tokens ? (
         <>
           {location.pathname === "/register" ? <RegisterPage /> : <LoginPage />}
         </>

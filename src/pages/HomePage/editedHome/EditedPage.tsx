@@ -1,6 +1,9 @@
-import React, { useState, ChangeEvent, FormEvent } from "react";
+import React, { useState, ChangeEvent, FormEvent, useEffect } from "react";
 import styles from "./editedHome.module.css";
-import Button from "../../../ui/Button/Button";
+
+import { useAppDispatch, useAppSelector } from "../../helpers/hooks";
+import { getCurrentUser } from "../../../store/actions/user.actions";
+
 
 interface FormData {
   name: string;
@@ -22,7 +25,14 @@ const EditedPage: React.FC = () => {
     birthday: "25 августа 2005 г.",
     city: "Bishkek",
   });
+const dispatch = useAppDispatch();
+const { user } = useAppSelector((state) => state.users);
+const tokens = localStorage.getItem("tokens");
+useEffect(() => {
+  tokens && dispatch(getCurrentUser());
+}, [dispatch]);
 
+console.log(user);
   const [photo, setPhoto] = useState<string | ArrayBuffer | null>(null);
 
   const handleChange = (

@@ -16,7 +16,7 @@ function HandleLogout() {
 }
 
 $axios.interceptors.request.use(async (config) => {
-  config.baseURL = "http://34.173.115.25/api/v1";
+  config.baseURL = "http://34.16.165.7/api/v1";
   const tokens = JSON.parse(localStorage.getItem("tokens") as string);
   if (tokens) {
     config.headers.Authorization = `Bearer ${tokens.access}`;
@@ -33,7 +33,7 @@ $axios.interceptors.response.use(
       const tokens = JSON.parse(localStorage.getItem("tokens") as string);
       if (tokens) {
         try {
-          const { data } = await $axios.post("/account/token/refresh/", {
+          const { data } = await $axios.post("/account/refresh/", {
             refresh: tokens.refresh,
           });
 

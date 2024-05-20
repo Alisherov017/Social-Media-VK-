@@ -23,6 +23,11 @@ const Navbar = () => {
   }, [dispatch]);
 
   console.log(user);
+  useEffect(() => {
+    tokens && dispatch(getCurrentUser());
+  }, [dispatch]);
+
+  console.log(user);
   const openModule = () => {
     setModule(true);
   };
@@ -78,18 +83,20 @@ const Navbar = () => {
       {module && (
         <>
           <div className={styles.modal}>
-            <div className={styles.modal_top}>
-              <div>
-                <img
-                  src="https://sun1-93.userapi.com/impf/DW4IDqvukChyc-WPXmzIot46En40R00idiUAXw/l5w5aIHioYc.jpg?quality=96&as=50x50,100x100,200x200,400x400&sign=10ad7d7953daabb7b0e707fdfb7ebefd&u=sMxW2caWLp1QPhK-jWVUJhAecZdUlsd44UvrOlpCGvQ&cs=200x200"
-                  alt=""
-                />
+            <Link to={"./"}>
+              <div className={styles.modal_top}>
+                <div>
+                  <img
+                    src="https://sun1-93.userapi.com/impf/DW4IDqvukChyc-WPXmzIot46En40R00idiUAXw/l5w5aIHioYc.jpg?quality=96&as=50x50,100x100,200x200,400x400&sign=10ad7d7953daabb7b0e707fdfb7ebefd&u=sMxW2caWLp1QPhK-jWVUJhAecZdUlsd44UvrOlpCGvQ&cs=200x200"
+                    alt=""
+                  />
+                </div>
+                <div>
+                  {user && <h1 className={styles.user_name}>{user.email}</h1>}
+                  {user && <h1 className={styles.user_number}>+339 654987</h1>}
+                </div>
               </div>
-              <div>
-                <div>Name</div>
-                <div>number</div>
-              </div>
-            </div>
+            </Link>
             <div className={styles.modal_bottom}>
               <Link to={"https://vk.com/settings"}>
                 <div className={styles.modal_links}>

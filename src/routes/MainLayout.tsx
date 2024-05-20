@@ -6,6 +6,7 @@ import { Home } from "@mui/icons-material";
 import NavbarLogin from "../widgets/navbar/NavbarLogin";
 import LoginPage from "../pages/auth/login/LoginPage";
 import RegisterPage from "../pages/auth/registor/RegisterPage";
+import NotFountPage from "../notFoundPage/NotFountPage";
 
 const MainLayout = () => {
   const tokens = localStorage.getItem("tokens");
@@ -17,7 +18,7 @@ const MainLayout = () => {
         <>
           {location.pathname === "/register" ? <RegisterPage /> : <LoginPage />}
         </>
-      ) : (
+      ) : (           
         <div>
           <Navbar />
           <div className="container__block">

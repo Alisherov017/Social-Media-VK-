@@ -63,7 +63,13 @@ const HomePage = () => {
             <>
               <LocationOnIcon />
             </>
-            <>{userData.city}</>
+            <a
+              href="https://www.google.com/maps/place/%D0%91%D0%B8%D1%88%D0%BA%D0%B5%D0%BA/@42.8771485,74.5920476,11.94z/data=!4m6!3m5!1s0x389eb7dc91b3c881:0x492ebaf57cdee27d!8m2!3d42.8746212!4d74.5697617!16zL20vMDFnOV8?entry=ttu"
+              target="_blank"
+              className={styles.location}
+            >
+              {userData.city}
+            </a>
           </p>
 
           <span onClick={openModal}>

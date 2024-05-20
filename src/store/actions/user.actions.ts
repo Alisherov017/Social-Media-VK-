@@ -53,7 +53,7 @@ export const getCurrentUser = createAsyncThunk(
   "users/getCurrentUser",
   async () => {
     try {
-      const { data } = await $axios.get<ProfileType>("/account/profile/");
+      const { data } = await $axios.get<ProfileType>("/account/user/");
       return data;
     } catch (error) {
       console.log(error);

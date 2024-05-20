@@ -4,6 +4,7 @@ import { getProducts } from "../actions/post.actions";
 
 type StatesType = {
   products: ProductType[];
+  
   loading: boolean;
   favoriteProducts: any;
 };

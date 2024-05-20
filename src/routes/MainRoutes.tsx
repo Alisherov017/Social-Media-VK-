@@ -8,6 +8,7 @@ import HomePage from "../pages/HomePage/HomePage";
 import Photo from "../pages/photoPage/Photo";
 import EditedPage from "../pages/HomePage/editedHome/EditedPage";
 import AddPost from "../pages/addPost/addPost";
+import PostList from "../ui/posts/PostList";
 
 export const router = createBrowserRouter([
   {
@@ -16,6 +17,7 @@ export const router = createBrowserRouter([
     element: <MainLayout />,
     children: [
       { path: "/", element: <HomePage /> },
+      { path: "/", element: <PostList /> },
       { path: "*", element: <NotFountPage /> },
       { path: "/login", element: <LoginPage /> },
       { path: "/photo", element: <Photo /> },

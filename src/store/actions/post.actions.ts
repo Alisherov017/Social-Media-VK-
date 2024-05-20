@@ -8,7 +8,7 @@ export const getProducts = createAsyncThunk(
   async () => {
     try {
       //
-      const { data } = await $axios.get(`/products/${window.location.search}`);
+      const { data } = await $axios.get(`/posts/${window.location.search}`);
       return data.results;
     } catch (error) {
       console.log(error);
@@ -26,12 +26,12 @@ export const addProduct = createAsyncThunk(
     navigate: (path: string) => void;
   }) => {
     const formData = new FormData();
-    // formData.append("title", product.title);
+    formData.append("title", product.title);
     formData.append("description", product.description);
     formData.append("image", product.image!);
     try {
       //
-      await $axios.post("/products/", formData);
+      await $axios.post("/posts/", formData);
       navigate("/");
     } catch (error) {
       console.log("Error in addProduct:", error);

@@ -3,7 +3,7 @@ import styles from "./editedHome.module.css";
 
 import { useAppDispatch, useAppSelector } from "../../helpers/hooks";
 import { getCurrentUser } from "../../../store/actions/user.actions";
-
+import Button from "../../../ui/Button/Button";
 
 interface FormData {
   name: string;
@@ -25,14 +25,14 @@ const EditedPage: React.FC = () => {
     birthday: "25 августа 2005 г.",
     city: "Bishkek",
   });
-const dispatch = useAppDispatch();
-const { user } = useAppSelector((state) => state.users);
-const tokens = localStorage.getItem("tokens");
-useEffect(() => {
-  tokens && dispatch(getCurrentUser());
-}, [dispatch]);
+  const dispatch = useAppDispatch();
+  const { user } = useAppSelector((state) => state.users);
+  const tokens = localStorage.getItem("tokens");
+  useEffect(() => {
+    tokens && dispatch(getCurrentUser());
+  }, [dispatch]);
 
-console.log(user);
+  console.log(user);
   const [photo, setPhoto] = useState<string | ArrayBuffer | null>(null);
 
   const handleChange = (

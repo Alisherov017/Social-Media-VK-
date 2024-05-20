@@ -76,8 +76,8 @@
   border-radius: 5px;
   text-decoration: none;
   cursor: pointer;
+  margin-left: 60px;
   /* margin-left: 120px; */
-  
 }
 
 .editProfileButton:hover {
@@ -178,7 +178,6 @@
   font-weight: 500;
 }
 
-
 .profileHeader .buttonss {
   display: flex;
   flex-direction: column;
@@ -188,5 +187,9 @@
 
 .only {
   margin-top: 10px;
+}
 
+.buttons .addPost {
+  margin-top: 30px;
+  margin-left: 40px;
 }

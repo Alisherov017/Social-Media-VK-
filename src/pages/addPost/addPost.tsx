@@ -15,9 +15,6 @@ const AddPost: React.FC = () => {
 
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  console.log(product);
-
-  const [photo, setPhoto] = useState<string | ArrayBuffer | null>(null);
 
   function handleChange(e: ChangeEvent<HTMLInputElement>) {
     const { value, name, files } = e.target;
@@ -26,11 +23,13 @@ const AddPost: React.FC = () => {
     } else {
       setProduct({ ...product, [name]: value });
     }
+    console.log(product, "after1");
   }
 
   function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     dispatch(addProduct({ product, navigate }));
+    console.log(product, "after2");
   }
   return (
     <div className={styles.addProfilePage}>

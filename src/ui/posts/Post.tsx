@@ -5,8 +5,13 @@ import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
 import SendIcon from "@mui/icons-material/Send";
 import PresentToAllIcon from "@mui/icons-material/PresentToAll";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
+import { useAppDispatch, useAppSelector } from "../../helpers/Hooks";
+import { ProductType } from "../../types";
 
-const Post = () => {
+const Post: React.FC<{ post: ProductType }> = ({ post }) => {
+  //
+  const dispatch = useAppDispatch();
+
   const [isFunc, setIsFunc] = useState(false);
   const handleThree = () => {
     setIsFunc(true);
@@ -55,16 +60,9 @@ const Post = () => {
           <MoreVertIcon />
         </div>
       </div>
-      <p className={styles.vkPostContent}>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam sed nisi
-        a dui dignissim ultrices at a ante. Maecenas fringilla nisi id lectus
-        tempor, et tristique ligula aliquet.
-      </p>
-      <img
-        src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
-        alt="Post Image"
-        className={styles.vkPostImage}
-      />
+      {/*  */}
+      <p className={styles.vkPostContent}>{post.description}</p>
+      <img src={post.image} className={styles.vkPostImage} />
       <div className={styles.vkPostFooter}>
         <div className={styles.vkLikeButton}>
           <FavoriteBorderIcon className={styles.icons} />

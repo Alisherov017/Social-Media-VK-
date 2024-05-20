@@ -78,7 +78,11 @@ const HomePage = () => {
           <Link to="/editHome" className={styles.editProfileButton}>
             Редактировать профиль
           </Link>
-
+          <div className={styles.addPost}>
+            <Link to="/addPost" className={styles.editProfileButton}>
+              Добавить пост
+            </Link>
+          </div>
         </div>
       </div>
       {isModalOpen && (

@@ -1,6 +1,5 @@
 export type RegisterValues = {
   email: string;
-
   password: string;
   password_confirm: string;
 };
@@ -31,3 +30,4 @@ export type ProductType = {
   is_author: boolean;
   liked_by_user: boolean;
 };
+

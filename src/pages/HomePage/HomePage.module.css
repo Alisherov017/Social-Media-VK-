@@ -84,6 +84,9 @@
   background-color: #bad5f9;
 }
 
+.location{
+  text-decoration:  none;
+}
 /* ! модалка */
 .modal {
   position: fixed;

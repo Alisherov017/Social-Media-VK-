@@ -95,6 +95,24 @@
     transform: translateY(0);
   }
 }
+.modal_top :hover{
+background-color: rgb(221, 223, 225);
+}
+.user_name {
+  font-size: 13px;
+  padding-left: 10px;
+  font-weight: 500;
+  text-decoration: none;
+  color: #0d0c22;
+  
+}
+.user_number{
+  text-decoration: none;
+font-size: 13px;
+  padding-left: 10px;
+  color: #9e9ea7;
+  
+}
 
 .modal {
   /* Ваш текущий стиль модального окна */

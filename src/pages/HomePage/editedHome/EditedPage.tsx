@@ -1,7 +1,9 @@
 import React, { useState, ChangeEvent, FormEvent, useEffect } from "react";
 import styles from "./editedHome.module.css";
+
 import { useAppDispatch, useAppSelector } from "../../helpers/hooks";
 import { getCurrentUser } from "../../../store/actions/user.actions";
+
 
 interface FormData {
   name: string;
@@ -77,9 +79,9 @@ console.log(user);
             onChange={handlePhotoChange}
             className={styles.photoInput}
           />
-          <button type="button" className={styles.changePhotoButton}>
-            CHANGE PHOTO
-          </button>
+          <div className={styles.change}>
+            <Button>Изменить фото</Button>
+          </div>
         </div>
 
         <div className={styles.formGroup}>
@@ -154,12 +156,9 @@ console.log(user);
         </div>
 
         <div className={styles.buttons}>
-          <button type="button" className={styles.cancelButton}>
-            Отменить
-          </button>
-          <button type="submit" className={styles.saveButton}>
-            Сохранить
-          </button>
+          <Button>Отменить</Button>
+          <Button>Сохранить</Button>
+          {/* <div className={styles.} ></div> */}
         </div>
       </form>
     </div>

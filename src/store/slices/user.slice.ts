@@ -5,6 +5,7 @@ import { getCurrentUser } from "../actions/user.actions";
 
 type StatesType = {
   error: null | string;
+  formData: ProfileType[];
   loading: boolean;
   user: null | ProfileType;
 };
@@ -12,6 +13,7 @@ type StatesType = {
 const INIT_STATE: StatesType = {
   error: null,
   loading: false,
+  formData:[],
   user: null,
 };
 

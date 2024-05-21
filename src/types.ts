@@ -8,9 +8,21 @@ export const logo =
 
 export type LoginValues = Omit<RegisterValues, "password_confirm">;
 
-export interface ProfileType {
-  id: number;
+export interface UserType {
+  name: string;
   email: string;
+  mobilePhone: string;
+
+  password: string;
+  password_confirm?: string;
+  id?: number;
+}
+
+export interface ProfileType extends UserType {
+  title: string;
+  
+  birthday: string;
+  city: string;
 }
 
 export type FormDatas = {
@@ -31,3 +43,12 @@ export type ProductType = {
   liked_by_user: boolean;
 };
 
+export interface FormData {
+  name: string;
+  title: string;
+  mobilePhone: string;
+  email: string;
+  password: string;
+  birthday: string;
+  city: string;
+}

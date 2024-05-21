@@ -37,11 +37,12 @@ const RegisterPage = () => {
       return;
     }
     console.log("успешная регистрация");
-    navigate("/");
     dispatch(registerUser({ data: user, navigate }));
+    navigate("/editHome");
   }
   console.log(user);
 
+  
   function handleChange(e: ChangeEvent<HTMLInputElement>) {
     const { name, value } = e.target;
     setUser({ ...user, [name]: value });
@@ -78,7 +79,7 @@ const RegisterPage = () => {
             type="password"
             placeholder="Password confirm"
           />
-          <Button bg="#0077ff" color="#fff">
+          <Button bg="#0077ff"  color="#fff">
             Регистрация
           </Button>
           <p>

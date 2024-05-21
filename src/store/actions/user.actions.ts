@@ -17,11 +17,12 @@ export const registerUser = createAsyncThunk(
     formData.append("password", data.password);
     formData.append("password_confirm", data.password_confirm);
     try {
+      console.log("Отправка данных на сервер:", formData);
       await $axios.post("/account/register/", formData);
       navigate("/");
       dispatch(setError(null));
     } catch (error: any) {
-      console.log(Object.values(error.response.data).flat(2)[0]);
+      console.log("Ошибка при регистрации:", error.response.data);
       dispatch(setError(Object.values(error.response.data).flat(2)[0]));
     }
   }
@@ -37,13 +38,14 @@ export const loginUser = createAsyncThunk(
     formData.append("email", data.email);
     formData.append("password", data.password);
     try {
+      console.log("Отправка данных на сервер:", formData);
       const { data } = await $axios.post("/account/login/", formData);
       localStorage.setItem("tokens", JSON.stringify(data));
       dispatch(getCurrentUser());
-      navigate("/");
+      navigate("/editHome");
       dispatch(setError(null));
     } catch (error: any) {
-      console.log(Object.values(error.response.data).flat(2)[0]);
+      console.log("Ошибка при входе:", error.response.data);
       dispatch(setError(Object.values(error.response.data).flat(2)[0]));
     }
   }
@@ -53,10 +55,25 @@ export const getCurrentUser = createAsyncThunk(
   "users/getCurrentUser",
   async () => {
     try {
-      const { data } = await $axios.get<ProfileType>("/account/user/");
+      const { data } = await $axios.get<ProfileType>("/account/profile/");
       return data;
     } catch (error) {
-      console.log(error);
+      console.log("Ошибка при получении текущего пользователя:", error);
+    }
+  }
+);
+
+export const changeProfile = createAsyncThunk(
+  "user/changeProfile",
+  async (
+    { id, formData }: { id: string | number; formData: ProfileType },
+    { dispatch }
+  ) => {
+    try {
+      await $axios.put("/account/profile/", formData);
+      dispatch(getCurrentUser());
+    } catch (error) {
+      console.log("Ошибка при изменении профиля:", error);
     }
   }
 );

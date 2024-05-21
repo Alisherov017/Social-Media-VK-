@@ -2,32 +2,32 @@ import React, { useState, ChangeEvent, FormEvent, useEffect } from "react";
 import styles from "./editedHome.module.css";
 
 import { useAppDispatch, useAppSelector } from "../../helpers/hooks";
-import { getCurrentUser } from "../../../store/actions/user.actions";
+import {
+  changeProfile,
+  getCurrentUser,
+} from "../../../store/actions/user.actions";
 import Button from "../../../ui/Button/Button";
-
-interface FormData {
-  name: string;
-  title: string;
-  mobilePhone: string;
-  email: string;
-  password: string;
-  birthday: string;
-  city: string;
-}
+import { useNavigate } from "react-router-dom";
+import { FormData } from "../../../types";
 
 const EditedPage: React.FC = () => {
   const [formData, setFormData] = useState<FormData>({
-    name: "Алишеров Руслан",
+    name: "",
     title: "",
-    mobilePhone: "+339 654987",
+    mobilePhone: "",
     email: "",
-    password: "12345665",
-    birthday: "25 августа 2005 г.",
-    city: "Bishkek",
+    password: "",
+    birthday: "",
+    city: "",
   });
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const { user } = useAppSelector((state) => state.users);
   const tokens = localStorage.getItem("tokens");
+
+  useEffect(() => {
+    user && setFormData({ ...user });
+  }, [user]);
   useEffect(() => {
     tokens && dispatch(getCurrentUser());
   }, [dispatch]);
@@ -55,14 +55,21 @@ const EditedPage: React.FC = () => {
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // Logic to save the updated user data
-    console.log("Updated User Data:", formData);
+
+    const storedTokens = localStorage.getItem("tokens");
+    if (storedTokens) {
+      const id = JSON.parse(storedTokens).id;
+      dispatch(changeProfile({ id, formData }));
+      navigate("/");
+    } else {
+      console.error("No tokens found in localStorage");
+    }
   };
 
   return (
     <div className={styles.editProfilePage}>
       <h1>Редактировать профиль</h1>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} >
         <div className={styles.photoSection}>
           <img
             src={
@@ -127,18 +134,6 @@ const EditedPage: React.FC = () => {
             id="mobilePhone"
             name="mobilePhone"
             value={formData.mobilePhone}
-            onChange={handleChange}
-            required
-          />
-        </div>
-
-        <div className={styles.formGroup}>
-          <label htmlFor="password">Пароль:</label>
-          <input
-            type="password"
-            id="password"
-            name="password"
-            value={formData.password}
             onChange={handleChange}
             required
           />

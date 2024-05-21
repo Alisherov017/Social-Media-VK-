@@ -57,7 +57,7 @@ const HomePage = () => {
             className={styles.profileImage}
           />
         </div>
-        {user && <h1>{user.email}</h1>}
+        {user && <h1>{user.name}</h1>}
         <div className={styles.two}>
           <p>
             <>
@@ -110,14 +110,15 @@ const HomePage = () => {
                   <span>
                     <AccountCircleIcon />
                   </span>
-                  {user && <p>Name: {user.email}</p>}
+                  {user && <p>Name: {user.name}</p>}
                 </div>
 
                 <div className={styles.birthday}>
                   <span>
                     <CakeIcon />
                   </span>
-                  <p>День рождения: {userData.birthday}</p>
+                  
+                  {user && <p>День рождения: {user.email}</p>}
                 </div>
 
                 <div className={styles.city}>

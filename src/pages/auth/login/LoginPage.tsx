@@ -1,36 +1,63 @@
-import React, { ChangeEvent, FormEvent, useState } from "react";
+import React, { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import NavbarLogin from "../../../widgets/navbar/NavbarLogin";
 import styles from "./login.module.css";
 import loginFoto from "./img/image.png";
 import { Link, useNavigate } from "react-router-dom";
 import Button from "../../../ui/Button/Button";
-import { logo } from "../../../types";
+import { LoginType, logo } from "../../../types";
 import { useAppDispatch } from "../../../helpers/Hooks";
-import { loginUser } from "../../../store/actions/user.actions";
+import { getCurrentUser, getUsers } from "../../../store/actions/user.actions";
+import { useAppSelector } from "../../helpers/hooks";
 
 const LoginPage = () => {
-  const [user, setUser] = useState({
-    email: "",
-    password: "",
-  });
-const dispatch =useAppDispatch()
-const navigate=useNavigate()
-  function handleChange(e: ChangeEvent<HTMLInputElement>) {
-    const { name, value } = e.target;
-    setUser({ ...user, [name]: value });
-  }
-  console.log(user);
+   const [user, setUser] = useState<LoginType>({
+     email: "",
+     password: "",
+   });
 
-  function handleSubmit(e: FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    console.log("okk");
+   const dispatch = useAppDispatch();
+   const { users } = useAppSelector((state) => state.users);
+   const navigate = useNavigate();
 
-    if (!user.email || !user.password) {
-      alert("Заполните все поля");
-      return;
-    }
-     dispatch(loginUser({ data: user, navigate }));
-  }
+   useEffect(() => {
+     dispatch(getUsers());
+   }, []);
+
+   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
+     e.preventDefault();
+     for (let key in user) {
+       if (!user[key]) {
+         alert("Some inputs are empty!");
+         return;
+       }
+     }
+
+     const foundUser = users.find((item) => item.email === user.email);
+
+     console.log(foundUser);
+     if (!foundUser) {
+       alert("No user!");
+       return;
+     }
+
+     if (foundUser.password !== user.password) {
+       alert("Wrong password!");
+       return;
+     }
+
+     localStorage.setItem("currentUser", foundUser.id!.toString());
+     dispatch(getCurrentUser(foundUser.id!.toString()));
+     setUser({
+       email: "",
+       password: "",
+     });
+     navigate("/editHome");
+   }
+
+   function handleChange(e: ChangeEvent<HTMLInputElement>) {
+     const { name, value } = e.target;
+     setUser({ ...user, [name]: value });
+   }
   return (
     <>
       <NavbarLogin />

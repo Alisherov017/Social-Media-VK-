@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import styles from "./HomePage.module.css";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import InfoIcon from "@mui/icons-material/Info";
@@ -7,37 +7,20 @@ import CakeIcon from "@mui/icons-material/Cake";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import HomeIcon from "@mui/icons-material/Home";
 import { useAppDispatch, useAppSelector } from "../helpers/hooks";
-import { getCurrentUser } from "../../store/actions/user.actions";
-
-interface UserData {
-  name: string;
-  city: string;
-  country: string;
-  phone: string;
-  id: string;
-  birthday: string;
-}
+import { getCurrentUser, getOneUser } from "../../store/actions/user.actions";
 
 const HomePage = () => {
+  const dispatch = useAppDispatch();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const [userData, setUserData] = useState<UserData>({
-    name: "Алишеров Руслан",
-    city: "Bishkek",
-    country: "Страна",
-    phone: "+339 654987",
-    id: "4987",
-    birthday: "25 августа 2005 г.",
-  });
-
-  const dispatch = useAppDispatch();
-  const { user } = useAppSelector((state) => state.users);
-  const tokens = localStorage.getItem("tokens");
   useEffect(() => {
-    tokens && dispatch(getCurrentUser());
-  }, [dispatch]);
+    const id = localStorage.getItem("currentUser");
+    {
+      id && dispatch(getCurrentUser(id));
+    }
+  }, []);
 
-  console.log(user);
+  const { currentUser } = useAppSelector((state) => state.users);
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -52,12 +35,16 @@ const HomePage = () => {
       <div className={styles.profileHeader}>
         <div className={styles.profileImageContainer}>
           <img
-            src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
+            src={
+              currentUser?.avatar ||
+              "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
+            }
             alt="User Profile"
             className={styles.profileImage}
           />
         </div>
-        {user && <h1>{user.name}</h1>}
+
+        <h1>{currentUser?.name}</h1>
         <div className={styles.two}>
           <p>
             <>
@@ -68,7 +55,7 @@ const HomePage = () => {
               target="_blank"
               className={styles.location}
             >
-              {userData.city}
+              {currentUser?.city}
             </a>
           </p>
 
@@ -79,7 +66,6 @@ const HomePage = () => {
             <div className={styles.info}>Подробнее</div>
           </span>
         </div>
-
         <div className={styles.buttons}>
           <Link to="/editHome" className={styles.editProfileButton}>
             Редактировать профиль
@@ -102,7 +88,7 @@ const HomePage = () => {
               <div className={styles.inf}>
                 <div className={styles.id}>
                   <span>@</span>
-                  {user && <p>id{user.id}</p>}
+                  <p>id{currentUser?.id}</p>
                 </div>
                 <hr />
 
@@ -110,27 +96,31 @@ const HomePage = () => {
                   <span>
                     <AccountCircleIcon />
                   </span>
-                  {user && <p>Name: {user.name}</p>}
+                  {/* {currentUser && <p>Name: {currentUser.name}</p>} */}
+                  <p> Name:{currentUser?.name}</p>
                 </div>
 
                 <div className={styles.birthday}>
                   <span>
                     <CakeIcon />
                   </span>
-                  
-                  {user && <p>День рождения: {user.email}</p>}
+
+                  {/* {currentUser && <p>День рождения: {currentUser.email}</p>} */}
+                  <p>День рождения:{currentUser?.bd}</p>
                 </div>
 
                 <div className={styles.city}>
                   <span>
                     <HomeIcon />
                   </span>
-                  <p>Город: {userData.city}</p>
+                  {/* <p>Город: {currentUser.city}</p> */}
+                  <p>Город:{currentUser?.city}</p>
                 </div>
                 <hr />
               </div>
               <h4>Контактная информация</h4>
-              <p>Моб. телефон: {userData.phone}</p>
+              {/* <p>Моб. телефон: {currentUser.phone}</p> */}
+              <p>Моб. телефон:{currentUser?.phone}</p>
             </div>
             <button className={styles.closeModalButton} onClick={closeModal}>
               X

@@ -1,62 +1,64 @@
 import React, { useState, ChangeEvent, FormEvent } from "react";
 import styles from "./addPost.module.css";
 import Button from "../../ui/Button/Button";
-import { FormDatas } from "../../types";
-import { useAppDispatch } from "../helpers/hooks";
+// import { FormDatas } from "../../types";
+import { useAppDispatch, useAppSelector } from "../helpers/hooks";
 import { useNavigate } from "react-router-dom";
-import { addProduct } from "../../store/actions/post.actions";
+// import { addPost } from "../../store/actions/post.actions";
+import { getCurrentUser } from "../../store/actions/user.actions";
+// import moment from "moment-timezone";
+import { CardData } from "../../types";
+import { addPost } from "../../store/actions/post.actions";
+import moment from "moment-timezone";
 
 const AddPost: React.FC = () => {
-  const [product, setProduct] = useState<FormDatas>({
+  const [post, setPost] = useState<CardData>({
     description: "",
-    title: "",
-    image: null,
+    image: "",
   });
 
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  function handleChange(e: ChangeEvent<HTMLInputElement>) {
-    const { value, name, files } = e.target;
-    if (name === "image" && files) {
-      setProduct({ ...product, [name]: files[0] });
-    } else {
-      setProduct({ ...product, [name]: value });
-    }
-    console.log(product, "after1");
-  }
+  const { currentUser } = useAppSelector((state) => state.users);
 
   function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    dispatch(addProduct({ product, navigate }));
-    console.log(product, "after2");
+    for (let key in post) {
+      if (!post[key]) {
+        alert("Some inputs are empty!");
+        return;
+      }
+    }
+
+    let newPost = {
+      ...post,
+      time: moment(moment().format("YYYY-MM-DD")).format("LL"),
+    };
+
+    dispatch(
+      addPost({
+        userId: currentUser?.id!,
+        post: newPost,
+      })
+    );
+
+    setPost({
+      description: "",
+      image: "",
+    });
+    navigate("/profile");
   }
+
+  function handleChange(e: ChangeEvent<HTMLInputElement>) {
+    const { name, value } = e.target;
+    setPost({ ...post, [name]: value });
+  }
+
   return (
     <div className={styles.addProfilePage}>
       <h1>Добавить пост</h1>
       <form onSubmit={handleSubmit}>
-        {/* <div className={styles.photoSection}>
-          <img
-            src={
-              photo
-                ? photo.toString()
-                : "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
-            }
-            className={styles.profilePhoto}
-            alt="Profile"
-          />
-          <input
-            type="file"
-            accept="image/*"
-            name="image"
-            onChange={handleChange}
-            className={styles.photoInput}
-          />
-          <div className={styles.cusBut}>
-            <Button>ЗАГРУЗИТЬ ФОТО</Button>
-          </div>
-        </div> */}
-
         <div className={styles.formGroup}>
           <label htmlFor="description">фото: </label>
           <input
@@ -75,7 +77,7 @@ const AddPost: React.FC = () => {
             type="text"
             id="description"
             name="description"
-            value={product.description}
+            // value={product.description}
             onChange={handleChange}
             required
           />

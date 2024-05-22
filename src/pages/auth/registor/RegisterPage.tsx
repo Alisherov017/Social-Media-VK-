@@ -5,23 +5,26 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import NavbarLogin from "../../../widgets/navbar/NavbarLogin";
 import Button from "../../../ui/Button/Button";
-import { RegisterValues, logo } from "../../../types";
+import {  UserType, logo } from "../../../types";
 import { useAppDispatch } from "../../../helpers/Hooks";
-import { registerUser } from "../../../store/actions/user.actions";
+import { getUsers, registerUser } from "../../../store/actions/user.actions";
+import { useAppSelector } from "../../helpers/hooks";
 
 const RegisterPage = () => {
-  const navigate = useNavigate();
-  const dispatch = useAppDispatch();
-
-  const [user, setUser] = useState<RegisterValues>({
+  const [user, setUser] = useState<UserType>({
+    name: "",
+    phone: "",
     email: "",
     password: "",
     password_confirm: "",
   });
 
+  const dispatch = useAppDispatch();
+  const { users } = useAppSelector((state) => state.users);
+  const navigate = useNavigate();
+
   function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-
     if (user.password.length <= 5) {
       alert("Пароль должен быть больше 6 символов");
       return;
@@ -37,12 +40,18 @@ const RegisterPage = () => {
       return;
     }
     console.log("успешная регистрация");
-    dispatch(registerUser({ data: user, navigate }));
-    navigate("/editHome");
-  }
-  console.log(user);
 
-  
+    dispatch(registerUser(user));
+    setUser({
+      name: "",
+      phone: "",
+      email: "",
+      password: "",
+      password_confirm: "",
+    });
+    navigate("/");
+  }
+
   function handleChange(e: ChangeEvent<HTMLInputElement>) {
     const { name, value } = e.target;
     setUser({ ...user, [name]: value });

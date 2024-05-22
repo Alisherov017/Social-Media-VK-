@@ -13,21 +13,19 @@ import { useAppDispatch, useAppSelector } from "../../helpers/Hooks";
 import { getCurrentUser } from "../../store/actions/user.actions";
 
 const Navbar = () => {
-  const dispatch = useAppDispatch();
-  const { user } = useAppSelector((state) => state.users);
-  const tokens = localStorage.getItem("tokens");
   const [module, setModule] = useState(false);
 
-  useEffect(() => {
-    tokens && dispatch(getCurrentUser());
-  }, [dispatch]);
+  const dispatch = useAppDispatch();
 
-  console.log(user);
   useEffect(() => {
-    tokens && dispatch(getCurrentUser());
-  }, [dispatch]);
+    const id = localStorage.getItem("currentUser");
+    {
+      id && dispatch(getCurrentUser(id));
+    }
+  }, []);
 
-  console.log(user);
+  const { currentUser } = useAppSelector((state) => state.users);
+
   const openModule = () => {
     setModule(true);
   };
@@ -73,7 +71,10 @@ const Navbar = () => {
             <button onClick={openModule}>
               <img
                 className={styles.nav_profil_img}
-                src="https://sun1-93.userapi.com/impf/DW4IDqvukChyc-WPXmzIot46En40R00idiUAXw/l5w5aIHioYc.jpg?quality=96&as=50x50,100x100,200x200,400x400&sign=10ad7d7953daabb7b0e707fdfb7ebefd&u=sMxW2caWLp1QPhK-jWVUJhAecZdUlsd44UvrOlpCGvQ&cs=200x200"
+                src={
+                  currentUser?.avatar ||
+                  "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
+                }
                 alt=""
               />
             </button>
@@ -87,13 +88,20 @@ const Navbar = () => {
               <div className={styles.modal_top}>
                 <div>
                   <img
-                    src="https://sun1-93.userapi.com/impf/DW4IDqvukChyc-WPXmzIot46En40R00idiUAXw/l5w5aIHioYc.jpg?quality=96&as=50x50,100x100,200x200,400x400&sign=10ad7d7953daabb7b0e707fdfb7ebefd&u=sMxW2caWLp1QPhK-jWVUJhAecZdUlsd44UvrOlpCGvQ&cs=200x200"
+                    src={
+                      currentUser?.avatar ||
+                      "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
+                    }
                     alt=""
                   />
                 </div>
                 <div>
-                  {user && <h1 className={styles.user_name}>{user.email}</h1>}
-                  {user && <h1 className={styles.user_number}>+339 654987</h1>}
+                  {currentUser && (
+                    <h1 className={styles.user_name}>{currentUser.name}</h1>
+                  )}
+                  {currentUser && (
+                    <h1 className={styles.user_number}>{currentUser.phone}</h1>
+                  )}
                 </div>
               </div>
             </Link>

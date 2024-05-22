@@ -2,104 +2,79 @@ import React, { useState, ChangeEvent, FormEvent, useEffect } from "react";
 import styles from "./editedHome.module.css";
 
 import { useAppDispatch, useAppSelector } from "../../helpers/hooks";
-import {
-  changeProfile,
-  getCurrentUser,
-} from "../../../store/actions/user.actions";
+import { changeProfile } from "../../../store/actions/user.actions";
 import Button from "../../../ui/Button/Button";
-import { useNavigate } from "react-router-dom";
-import { FormData } from "../../../types";
+import { Link, useNavigate } from "react-router-dom";
+import { ProfileType } from "../../../types";
 
-const EditedPage: React.FC = () => {
-  const [formData, setFormData] = useState<FormData>({
+const EditedPage = () => {
+  const [user, setUser] = useState<ProfileType>({
     name: "",
-    title: "",
-    mobilePhone: "",
     email: "",
     password: "",
-    birthday: "",
+    phone: "",
+    avatar: "",
+    background: "",
     city: "",
+    status: "",
+    bd: "",
   });
+
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const { user } = useAppSelector((state) => state.users);
-  const tokens = localStorage.getItem("tokens");
+  const { currentUser } = useAppSelector((state) => state.users);
 
   useEffect(() => {
-    user && setFormData({ ...user });
-  }, [user]);
-  useEffect(() => {
-    tokens && dispatch(getCurrentUser());
-  }, [dispatch]);
+    currentUser && setUser({ ...currentUser });
+  }, [currentUser]);
 
-  console.log(user);
-  const [photo, setPhoto] = useState<string | ArrayBuffer | null>(null);
-
-  const handleChange = (
-    e: ChangeEvent<HTMLInputElement | HTMLSelectElement>
-  ) => {
+  function handleInputChange(e: ChangeEvent<HTMLInputElement>) {
     const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
+    setUser({ ...user, [name]: value });
+  }
 
-  const handlePhotoChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = () => {
-        setPhoto(reader.result);
-      };
-      reader.readAsDataURL(file);
-    }
-  };
-
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-
-    const storedTokens = localStorage.getItem("tokens");
-    if (storedTokens) {
-      const id = JSON.parse(storedTokens).id;
-      dispatch(changeProfile({ id, formData }));
-      navigate("/");
-    } else {
-      console.error("No tokens found in localStorage");
-    }
-  };
+    const id = localStorage.getItem("currentUser");
+    id && dispatch(changeProfile({ id, user }));
+    navigate("/");
+  }
 
   return (
     <div className={styles.editProfilePage}>
-      <h1>Редактировать профиль</h1>
-      <form onSubmit={handleSubmit} >
+      {user.phone ? <h1>Редактировать профиль</h1> : <h1>Дополните данные</h1>}
+      <form onSubmit={handleSubmit}>
         <div className={styles.photoSection}>
           <img
             src={
-              photo
-                ? photo.toString()
-                : "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
+              user.avatar ||
+              "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
             }
             alt="Profile"
             className={styles.profilePhoto}
           />
-          <input
-            type="file"
-            accept="image/*"
-            onChange={handlePhotoChange}
-            className={styles.photoInput}
-          />
-          <div className={styles.change}>
-            <Button>Изменить фото</Button>
-          </div>
+          <div className={styles.change}></div>
         </div>
 
+        <div className={styles.formGroup}>
+          <label htmlFor="avatar">Аватар:</label>
+          <input
+            type="avatar"
+            id="avatar"
+            name="avatar"
+            onChange={handleInputChange}
+            value={user.avatar}
+          />
+        </div>
         <div className={styles.formGroup}>
           <label htmlFor="name">Имя:</label>
           <input
             type="text"
             id="name"
             name="name"
-            value={formData.name}
-            onChange={handleChange}
+            onChange={handleInputChange}
             required
+            value={user.name || ""}
           />
         </div>
 
@@ -108,10 +83,10 @@ const EditedPage: React.FC = () => {
           <input
             type="text"
             id="birthday"
-            name="birthday"
-            value={formData.birthday}
-            onChange={handleChange}
+            name="bd"
+            onChange={handleInputChange}
             required
+            value={user.bd || ""}
           />
         </div>
 
@@ -121,9 +96,9 @@ const EditedPage: React.FC = () => {
             type="text"
             id="city"
             name="city"
-            value={formData.city}
-            onChange={handleChange}
+            onChange={handleInputChange}
             required
+            value={user.city || ""}
           />
         </div>
 
@@ -132,10 +107,10 @@ const EditedPage: React.FC = () => {
           <input
             type="text"
             id="mobilePhone"
-            name="mobilePhone"
-            value={formData.mobilePhone}
-            onChange={handleChange}
+            name="phone"
+            onChange={handleInputChange}
             required
+            value={user.phone || ""}
           />
         </div>
 
@@ -145,17 +120,20 @@ const EditedPage: React.FC = () => {
             type="email"
             id="email"
             name="email"
-            value={formData.email}
-            onChange={handleChange}
+            onChange={handleInputChange}
+            value={user.email || ""}
           />
         </div>
 
         <div className={styles.buttons}>
-          <Button>Отменить</Button>
           <Button>Сохранить</Button>
+
           {/* <div className={styles.} ></div> */}
         </div>
       </form>
+      <Link to={"/"}>
+        <Button>Отменить</Button>
+      </Link>
     </div>
   );
 };

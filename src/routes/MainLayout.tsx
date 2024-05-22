@@ -14,7 +14,9 @@ const MainLayout = () => {
 
   return (
     <>
+
       {!currentUser ? (
+
         <>
           {location.pathname === "/register" ? <RegisterPage /> : <LoginPage />}
         </>

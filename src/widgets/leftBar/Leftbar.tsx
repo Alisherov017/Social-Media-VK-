@@ -38,7 +38,7 @@ const LeftBar = () => {
           </Link>
         </li>
         <li className={styles.text}>
-          <Link to="/friends">
+          <Link to="/friend">
             <GroupIcon />
             <>Друзья</>
           </Link>

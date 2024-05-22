@@ -14,11 +14,11 @@ const MainLayout = () => {
 
   return (
     <>
-      {!tokens ? (
+      {tokens ? (
         <>
           {location.pathname === "/register" ? <RegisterPage /> : <LoginPage />}
         </>
-      ) : (           
+      ) : (
         <div>
           <Navbar />
           <div className="container__block">

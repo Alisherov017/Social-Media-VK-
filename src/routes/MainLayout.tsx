@@ -9,16 +9,16 @@ import RegisterPage from "../pages/auth/registor/RegisterPage";
 import NotFountPage from "../notFoundPage/NotFountPage";
 
 const MainLayout = () => {
-  const tokens = localStorage.getItem("tokens");
+  const currentUser = localStorage.getItem("currentUser");
   const location = useLocation();
 
   return (
     <>
-      {!tokens ? (
+      {!currentUser ? (
         <>
           {location.pathname === "/register" ? <RegisterPage /> : <LoginPage />}
         </>
-      ) : (           
+      ) : (
         <div>
           <Navbar />
           <div className="container__block">

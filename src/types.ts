@@ -1,35 +1,35 @@
-export type RegisterValues = {
-  email: string;
-  password: string;
-  password_confirm: string;
-};
-export const logo =
-  "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/VK_Compact_Logo_%282021-present%29.svg/2048px-VK_Compact_Logo_%282021-present%29.svg.png";
-
-export type LoginValues = Omit<RegisterValues, "password_confirm">;
-
 export interface UserType {
   name: string;
   email: string;
-  mobilePhone: string;
-
+  phone: string;
   password: string;
   password_confirm?: string;
   id?: number;
+  [key: string]: string | number | undefined | CardData[];
 }
 
 export interface ProfileType extends UserType {
-  title: string;
-  
-  birthday: string;
   city: string;
+  avatar: string;
+  bd: string;
+  posts?: CardData[];
 }
 
-export type FormDatas = {
-  description: string;
-  title: string;
-  image: null | File;
+export type LoginType = {
+  email: string;
+  password: string;
+  [key: string]: string;
 };
+
+export interface CardData {
+  image: string;
+
+  description: string;
+  time?: string;
+  [key: string]: string | number | undefined;
+}
+export const logo =
+  "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/VK_Compact_Logo_%282021-present%29.svg/2048px-VK_Compact_Logo_%282021-present%29.svg.png";
 
 export type ProductType = {
   id: number;
@@ -42,13 +42,3 @@ export type ProductType = {
   is_author: boolean;
   liked_by_user: boolean;
 };
-
-export interface FormData {
-  name: string;
-  title: string;
-  mobilePhone: string;
-  email: string;
-  password: string;
-  birthday: string;
-  city: string;
-}

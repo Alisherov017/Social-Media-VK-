@@ -1,40 +1,27 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { $axios } from "../../pages/helpers/axios";
-import { FormDatas } from "../../types";
-export {};
 
-export const getProducts = createAsyncThunk(
-  "products/getProducts",
-  async () => {
+import axios from "axios";
+import { StringLiteral } from "typescript";
+import { API } from "../../helpers/consts";
+import { getCurrentUser } from "./user.actions";
+import { CardData } from "../../types";
+
+export const addPost = createAsyncThunk(
+  "posts/addPost",
+  async (
+    { post, userId }: { post: CardData; userId: number | string },
+    { getState, dispatch }
+  ) => {
+    const { users } = getState() as any;
+    console.log(users);
+
     try {
-      //
-      const { data } = await $axios.get(`/posts/${window.location.search}`);
-      return data.results;
+      await axios.patch(`${API}/${userId}`, {
+        posts: [...users.currentUser.posts, post],
+      });
+      dispatch(getCurrentUser(userId));
     } catch (error) {
       console.log(error);
-    }
-  }
-);
-
-export const addProduct = createAsyncThunk(
-  "products/addProduct",
-  async ({
-    product,
-    navigate,
-  }: {
-    product: FormDatas;
-    navigate: (path: string) => void;
-  }) => {
-    const formData = new FormData();
-    formData.append("title", product.title);
-    formData.append("description", product.description);
-    formData.append("image", product.image!);
-    try {
-      //
-      await $axios.post("/posts/", formData);
-      navigate("/");
-    } catch (error) {
-      console.log("Error in addProduct:", error);
     }
   }
 );

@@ -1,46 +1,56 @@
 // user.slice.ts
 import { createSlice } from "@reduxjs/toolkit";
 import { ProfileType } from "../../types";
-import { getCurrentUser } from "../actions/user.actions";
+import { getCurrentUser, getOneUser, getUsers } from "../actions/user.actions";
 
 type StatesType = {
-  error: null | string;
-  formData: ProfileType[];
+  currentUser: null | ProfileType;
+  users: ProfileType[];
+  oneUser: ProfileType | null;
   loading: boolean;
-  user: null | ProfileType;
 };
 
 const INIT_STATE: StatesType = {
-  error: null,
+  currentUser: null,
+  users: [],
+  oneUser: null,
   loading: false,
-  formData:[],
-  user: null,
 };
+
 
 export const usersSlice = createSlice({
   name: "users",
   initialState: INIT_STATE,
   reducers: {
-    setError: (state, { payload }) => {
-      state.error = payload;
-    },
-    logout: (state) => {
-      localStorage.removeItem("tokens");
-      state.user = null;
+    logout(state) {
+      state.currentUser = null;
+      localStorage.removeItem("currentUser");
     },
   },
   extraReducers: (builder) => {
     builder
-      .addCase(getCurrentUser.fulfilled, (state, action) => {
-        state.user = action.payload!;
+      .addCase(getUsers.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(getUsers.fulfilled, (state, action) => {
         state.loading = false;
+        state.users = action.payload!;
       })
       .addCase(getCurrentUser.pending, (state) => {
         state.loading = true;
+      })
+      .addCase(getCurrentUser.fulfilled, (state, action) => {
+        state.loading = false;
+        state.currentUser = action.payload!;
+      })
+      .addCase(getOneUser.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(getOneUser.fulfilled, (state, action) => {
+        state.loading = false;
+        state.oneUser = action.payload!;
       });
   },
 });
 
-export const { setError, logout } = usersSlice.actions;
-
-export default usersSlice.reducer;
+export const { logout } = usersSlice.actions;

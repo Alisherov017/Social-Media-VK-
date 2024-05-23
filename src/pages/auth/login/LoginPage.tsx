@@ -10,54 +10,62 @@ import { getCurrentUser, getUsers } from "../../../store/actions/user.actions";
 import { useAppSelector } from "../../helpers/hooks";
 
 const LoginPage = () => {
-   const [user, setUser] = useState<LoginType>({
-     email: "",
-     password: "",
-   });
+  const [user, setUser] = useState<LoginType>({
+    email: "",
+    password: "",
+    name: "",
+  });
 
-   const dispatch = useAppDispatch();
-   const { users } = useAppSelector((state) => state.users);
-   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+  const { users } = useAppSelector((state) => state.users);
+  const navigate = useNavigate();
+    const { currentUser } = useAppSelector((state) => state.users);
 
-   useEffect(() => {
-     dispatch(getUsers());
-   }, []);
 
-   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
-     e.preventDefault();
-     for (let key in user) {
-       if (!user[key]) {
-         alert("Some inputs are empty!");
-         return;
-       }
-     }
+  useEffect(() => {
+    dispatch(getUsers());
+  }, []);
 
-     const foundUser = users.find((item) => item.email === user.email);
+  async function handleSubmit(e: FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    // for (let key in user) {
+    //   if (!user[key]) {
+    //     alert("Some inputs are empty!");
+    //     return;
+    //   }
+    // }
 
-     console.log(foundUser);
-     if (!foundUser) {
-       alert("No user!");
-       return;
-     }
+    const foundUser = users.find((item) => item.email === user.email);
 
-     if (foundUser.password !== user.password) {
-       alert("Wrong password!");
-       return;
-     }
+    console.log(foundUser);
+    if (!foundUser) {
+      alert("No user!");
+      return;
+    }
 
-     localStorage.setItem("currentUser", foundUser.id!.toString());
-     dispatch(getCurrentUser(foundUser.id!.toString()));
-     setUser({
-       email: "",
-       password: "",
-     });
-     navigate("/editHome");
-   }
+    if (foundUser.password !== user.password) {
+      alert("Wrong password!");
+      return;
+    }
 
-   function handleChange(e: ChangeEvent<HTMLInputElement>) {
-     const { name, value } = e.target;
-     setUser({ ...user, [name]: value });
-   }
+    localStorage.setItem("currentUser", foundUser.id!.toString());
+    dispatch(getCurrentUser(foundUser.id!.toString()));
+    setUser({
+      email: "",
+      password: "",
+    });
+
+    if (currentUser?.name) {
+      navigate("/editHome");
+    } else {
+      navigate("/");
+    }
+  }
+
+  function handleChange(e: ChangeEvent<HTMLInputElement>) {
+    const { name, value } = e.target;
+    setUser({ ...user, [name]: value });
+  }
   return (
     <>
       <NavbarLogin />

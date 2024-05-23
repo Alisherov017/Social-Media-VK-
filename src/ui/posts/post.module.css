@@ -4,6 +4,7 @@
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   padding: 15px;
   margin-bottom: 20px;
+  margin-top: 40px;
   width: 520px;
   height: 730px;
   padding-left: 20px;
@@ -131,12 +132,14 @@
 }
 
 /* ! little modal */
+
+/* ! */
 .modalOverlay {
   position: absolute;
-  top: 0;
+  /* top: 0;
   left: 0;
   width: 115%;
-  height: 45%;
+  height: 45%; */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -149,6 +152,8 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   z-index: 9;
 }
+/* ! */
+/*  */
 
 .modal p {
   cursor: pointer;

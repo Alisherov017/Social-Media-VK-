@@ -1,39 +1,6 @@
 {
   "users": [
     {
-      "name": "Илья ",
-      "email": "tihomirovi92@gmail.com",
-      "password": "12345678",
-      "phone": "0703775060",
-      "avatar": "https://sun9-30.userapi.com/c909218/u821563898/d10/-3/x_7f05b015f7.jpg",
-      "bd": "14.12.1997",
-      "city": "Bishkek",
-      "posts": [
-        {
-          "description": "qwerty",
-          "image": "https://s1.cdn.autoevolution.com/images/models/MAZDA_626--Mk-5--Sedan-1997_main.jpg",
-          "tag": "coolllll",
-          "title": "mazda",
-          "time": "May 1, 2024"
-        },
-        {
-          "description": "bmw",
-          "image": "https://s1.cdn.autoevolution.com/images/models/MAZDA_626--Mk-5--Sedan-1997_main.jpg",
-          "tag": "coolllll",
-          "title": "mazda",
-          "time": "May 1, 2024"
-        },
-        {
-          "description": "asdfghjk",
-          "image": "https://s1.cdn.autoevolution.com/images/models/MAZDA_626--Mk-5--Sedan-1997_main.jpg",
-          "tag": "coolllll",
-          "title": "mazda",
-          "time": "May 1, 2024"
-        }
-      ],
-      "id": 1
-    },
-    {
       "name": "Bekzhanss",
       "phone": "0705190750",
       "email": "bekamax05@gmail.com",
@@ -41,7 +8,7 @@
       "password_confirm": "12345678",
       "city": "Bishkekk",
       "bd": "03.04.05",
-      "avatar": "",
+      "avatar": "https://upload.wikimedia.org/wikipedia/commons/c/ca/Bruce_Lee_1973.jpg",
       "posts": [],
       "id": 2
     },
@@ -68,18 +35,6 @@
       "bd": "14.12.1997",
       "posts": [],
       "id": 4
-    },
-    {
-      "name": "",
-      "phone": "",
-      "email": "bekaaa@gmail.com",
-      "password": "12345678",
-      "password_confirm": "12345678",
-      "city": "",
-      "avatar": "",
-      "bd": "",
-      "posts": [],
-      "id": 5
     }
   ]
 }

@@ -9,6 +9,7 @@ import Photo from "../pages/photoPage/Photo";
 import EditedPage from "../pages/HomePage/editedHome/EditedPage";
 import AddPost from "../pages/addPost/addPost";
 import PostList from "../ui/posts/PostList";
+import Users from "../users/users";
 
 export const router = createBrowserRouter([
   {
@@ -17,13 +18,15 @@ export const router = createBrowserRouter([
     element: <MainLayout />,
     children: [
       { path: "/", element: <HomePage /> },
-      { path: "/", element: <PostList /> },
+      { path: "/:id", element: <HomePage /> },
+
       { path: "*", element: <NotFountPage /> },
       { path: "/login", element: <LoginPage /> },
       { path: "/photo", element: <Photo /> },
       { path: "/register", element: <RegisterPage /> },
       { path: "/editHome", element: <EditedPage /> },
       { path: "/addPost", element: <AddPost /> },
+      { path: "/friends", element: <Users /> },
     ],
   },
 ]);

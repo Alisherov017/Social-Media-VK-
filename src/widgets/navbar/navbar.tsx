@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { ChangeEvent, useEffect, useState } from "react";
 import styles from "./nav.module.css";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useSearchParams } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCog,
@@ -10,7 +10,7 @@ import {
 
 import { logout } from "../../store/slices/user.slice";
 import { useAppDispatch, useAppSelector } from "../../helpers/Hooks";
-import { getCurrentUser } from "../../store/actions/user.actions";
+import { getCurrentUser, getUsers } from "../../store/actions/user.actions";
 
 const Navbar = () => {
   const [module, setModule] = useState(false);
@@ -23,6 +23,12 @@ const Navbar = () => {
       id && dispatch(getCurrentUser(id));
     }
   }, []);
+const [search, setSearch] = useState("");
+const [searchParams, setSearchParams] = useSearchParams();
+useEffect(() => {
+  setSearchParams({ q: search });
+  dispatch(getUsers());
+}, [search]);
 
   const { currentUser } = useAppSelector((state) => state.users);
 
@@ -64,6 +70,9 @@ const Navbar = () => {
                 placeholder="Search"
                 type="search"
                 className={styles.input}
+                onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                  setSearch(e.target.value)
+                }
               />
             </div>
           </div>

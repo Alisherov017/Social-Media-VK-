@@ -9,6 +9,7 @@ import Photo from "../pages/photoPage/Photo";
 import EditedPage from "../pages/HomePage/editedHome/EditedPage";
 import AddPost from "../pages/addPost/addPost";
 import PostList from "../ui/posts/PostList";
+
 import Users from "../users/users";
 
 export const router = createBrowserRouter([
@@ -27,6 +28,7 @@ export const router = createBrowserRouter([
       { path: "/editHome", element: <EditedPage /> },
       { path: "/addPost", element: <AddPost /> },
       { path: "/friends", element: <Users /> },
+
     ],
   },
 ]);

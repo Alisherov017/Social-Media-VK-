@@ -14,6 +14,7 @@ const Users = () => {
   return (
     <div className="container">
       {users
+    //   a
         .filter((item) => item.id !== currentUser?.id)
         .map((item) => (
           <Friend key={item.id} user={item} />

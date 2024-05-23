@@ -5,7 +5,7 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import NavbarLogin from "../../../widgets/navbar/NavbarLogin";
 import Button from "../../../ui/Button/Button";
-import {  UserType, logo } from "../../../types";
+import { UserType, logo } from "../../../types";
 import { useAppDispatch } from "../../../helpers/Hooks";
 import { getUsers, registerUser } from "../../../store/actions/user.actions";
 import { useAppSelector } from "../../helpers/hooks";
@@ -88,7 +88,7 @@ const RegisterPage = () => {
             type="password"
             placeholder="Password confirm"
           />
-          <Button bg="#0077ff"  color="#fff">
+          <Button bg="#0077ff" color="#fff">
             Регистрация
           </Button>
           <p>

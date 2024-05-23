@@ -2,11 +2,15 @@ import React, { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import NavbarLogin from "../../../widgets/navbar/NavbarLogin";
 import styles from "./login.module.css";
 import loginFoto from "./img/image.png";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import Button from "../../../ui/Button/Button";
 import { LoginType, logo } from "../../../types";
 import { useAppDispatch } from "../../../helpers/Hooks";
-import { getCurrentUser, getUsers } from "../../../store/actions/user.actions";
+import {
+  getCurrentUser,
+  getOneUser,
+  getUsers,
+} from "../../../store/actions/user.actions";
 import { useAppSelector } from "../../helpers/hooks";
 
 const LoginPage = () => {
@@ -17,10 +21,10 @@ const LoginPage = () => {
   });
 
   const dispatch = useAppDispatch();
+
   const { users } = useAppSelector((state) => state.users);
   const navigate = useNavigate();
-    const { currentUser } = useAppSelector((state) => state.users);
-
+  const { currentUser } = useAppSelector((state) => state.users);
 
   useEffect(() => {
     dispatch(getUsers());
@@ -55,7 +59,7 @@ const LoginPage = () => {
       password: "",
     });
 
-    if (currentUser?.name) {
+    if (foundUser.name.trim() === "") {
       navigate("/editHome");
     } else {
       navigate("/");

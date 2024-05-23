@@ -8,6 +8,7 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import HomeIcon from "@mui/icons-material/Home";
 import { useAppDispatch, useAppSelector } from "../helpers/hooks";
 import { getCurrentUser, getOneUser } from "../../store/actions/user.actions";
+import Post from "../../ui/posts/Post";
 
 const HomePage = () => {
   const dispatch = useAppDispatch();
@@ -24,13 +25,12 @@ const HomePage = () => {
     }
   }, [paramId, dispatch]);
 
-  const id = localStorage.getItem("currentUser");
-
-  const { currentUser, oneUser } = useAppSelector((state) => state.users);
-
   function getUser() {
     return paramId ? oneUser : currentUser;
   }
+  const id = localStorage.getItem("currentUser");
+
+  const { currentUser, oneUser } = useAppSelector((state) => state.users);
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -143,6 +143,11 @@ const HomePage = () => {
             <div className={styles.owerflow} onClick={closeModal}></div>
           </>
         )}
+        <div className={styles.posts}>
+          {getUser()?.posts?.map((item, index) => (
+            <Post post={item} key={index} currentUser={currentUser} />
+          ))}
+        </div>
       </div>
     </>
   );

@@ -1,17 +1,17 @@
 import React, { useState, ChangeEvent, FormEvent } from "react";
 import styles from "./addPost.module.css";
-import Button from "../../ui/Button/Button";
-// import { FormDatas } from "../../types";
-import { useAppDispatch, useAppSelector } from "../helpers/hooks";
 import { useNavigate } from "react-router-dom";
-// import { addPost } from "../../store/actions/post.actions";
-import { getCurrentUser } from "../../store/actions/user.actions";
-// import moment from "moment-timezone";
-import { CardData } from "../../types";
-import { addPost } from "../../store/actions/post.actions";
 import moment from "moment-timezone";
+import { CardData } from "../../types";
+import { useAppDispatch, useAppSelector } from "../helpers/hooks";
+import { addPost } from "../../store/actions/post.actions";
+import Button from "../../ui/Button/Button";
+// import { CardData } from "../../../types";
+// import { useAppDispatch, useAppSelector } from "../../helpers/hooks";
+// import { addPost } from "../../../store/actions/post.actions";
+// import Button from "../../../ui/Button/Button";
 
-const AddPost: React.FC = () => {
+const EditPost: React.FC = () => {
   const [post, setPost] = useState<CardData>({
     description: "",
     image: "",
@@ -48,7 +48,7 @@ const AddPost: React.FC = () => {
       image: "",
     });
     console.log(post, "post");
-    navigate("/");
+    // navigate("/profile");
   }
 
   function handleChange(e: ChangeEvent<HTMLInputElement>) {
@@ -86,6 +86,7 @@ const AddPost: React.FC = () => {
 
         <div className={styles.cusBut}>
           <Button>Отменить</Button>
+
           <Button>Добавить</Button>
         </div>
       </form>
@@ -93,4 +94,4 @@ const AddPost: React.FC = () => {
   );
 };
 
-export default AddPost;
+export default EditPost;

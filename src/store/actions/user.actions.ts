@@ -22,8 +22,6 @@ export const registerUser = createAsyncThunk(
 
 export const getUsers = createAsyncThunk("users/getUsers", async () => {
   try {
-    console.log(window.location.search);
-
     const { data } = await axios.get<ProfileType[]>(
       `${API}/${window.location.search}`
     );

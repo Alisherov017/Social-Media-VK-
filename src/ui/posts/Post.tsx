@@ -6,9 +6,14 @@ import SendIcon from "@mui/icons-material/Send";
 import PresentToAllIcon from "@mui/icons-material/PresentToAll";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { useAppDispatch, useAppSelector } from "../../helpers/Hooks";
-import { ProductType } from "../../types";
+import { CardData, ProductType, ProfileType } from "../../types";
 
-const Post: React.FC<{ post: ProductType }> = ({ post }) => {
+interface PostProps {
+  post: CardData;
+  currentUser: ProfileType | null;
+}
+
+const Post: React.FC<PostProps> = ({ post, currentUser }) => {
   //
   const dispatch = useAppDispatch();
 
@@ -46,13 +51,10 @@ const Post: React.FC<{ post: ProductType }> = ({ post }) => {
     <div className={styles.vkCard}>
       <div className={styles.vkHeader}>
         <div className={styles.beka}>
-          <img
-            src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
-            className={styles.vkAvatar}
-          />
+          <img src={currentUser?.avatar} className={styles.vkAvatar} />
           <div className={styles.vkUserDetails}>
-            <h3 className={styles.vkUsername}>Имя пользователя</h3>
-            <p className={styles.vkPostTime}>20 часов назад</p>
+            <h3 className={styles.vkUsername}> {currentUser?.name} </h3>
+            <p className={styles.vkPostTime}> {post.time} </p>
           </div>
         </div>
 
@@ -77,7 +79,6 @@ const Post: React.FC<{ post: ProductType }> = ({ post }) => {
           <SendIcon className={styles.icons} />
         </div>
       </div>
-
       {isCommenting && (
         <form className={styles.vkCommentForm} onSubmit={handleCommentSubmit}>
           <input

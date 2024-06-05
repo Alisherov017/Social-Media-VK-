@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { ChangeEvent, useEffect, useState } from "react";
 import styles from "./nav.module.css";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useSearchParams } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCog,
@@ -8,12 +8,37 @@ import {
   faSignOutAlt,
 } from "@fortawesome/free-solid-svg-icons";
 
+import { logout } from "../../store/slices/user.slice";
+import { useAppDispatch, useAppSelector } from "../../helpers/Hooks";
+import { getCurrentUser, getUsers } from "../../store/actions/user.actions";
+
 const Navbar = () => {
   const [module, setModule] = useState(false);
+
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    const id = localStorage.getItem("currentUser");
+    {
+      id && dispatch(getCurrentUser(id));
+    }
+  }, []);
+  const [search, setSearch] = useState("");
+  const [searchParams, setSearchParams] = useSearchParams();
+  useEffect(() => {
+    setSearchParams({ q: search });
+    dispatch(getUsers());
+  }, [search]);
+
+  const { currentUser } = useAppSelector((state) => state.users);
 
   const openModule = () => {
     setModule(true);
   };
+  function onClickExit() {
+    window.location.reload();
+    dispatch(logout());
+  }
 
   const closeModule = () => {
     setModule(false);
@@ -25,7 +50,7 @@ const Navbar = () => {
       <div className={styles.navbar}>
         <div className={styles.navbar_container}>
           <div className={styles.left}>
-            <NavLink to={"/home"} className={styles.logo}>
+            <NavLink to={"/"} className={styles.logo}>
               <img
                 src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/VK_Full_Logo_%282021-present%29.svg/1280px-VK_Full_Logo_%282021-present%29.svg.png"
                 alt=""
@@ -45,6 +70,9 @@ const Navbar = () => {
                 placeholder="Search"
                 type="search"
                 className={styles.input}
+                onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                  setSearch(e.target.value)
+                }
               />
             </div>
           </div>
@@ -52,7 +80,10 @@ const Navbar = () => {
             <button onClick={openModule}>
               <img
                 className={styles.nav_profil_img}
-                src="https://sun1-93.userapi.com/impf/DW4IDqvukChyc-WPXmzIot46En40R00idiUAXw/l5w5aIHioYc.jpg?quality=96&as=50x50,100x100,200x200,400x400&sign=10ad7d7953daabb7b0e707fdfb7ebefd&u=sMxW2caWLp1QPhK-jWVUJhAecZdUlsd44UvrOlpCGvQ&cs=200x200"
+                src={
+                  currentUser?.avatar ||
+                  "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
+                }
                 alt=""
               />
             </button>
@@ -62,18 +93,27 @@ const Navbar = () => {
       {module && (
         <>
           <div className={styles.modal}>
-            <div className={styles.modal_top}>
-              <div>
-                <img
-                  src="https://sun1-93.userapi.com/impf/DW4IDqvukChyc-WPXmzIot46En40R00idiUAXw/l5w5aIHioYc.jpg?quality=96&as=50x50,100x100,200x200,400x400&sign=10ad7d7953daabb7b0e707fdfb7ebefd&u=sMxW2caWLp1QPhK-jWVUJhAecZdUlsd44UvrOlpCGvQ&cs=200x200"
-                  alt=""
-                />
+            <Link to={"./"}>
+              <div className={styles.modal_top}>
+                <div>
+                  <img
+                    src={
+                      currentUser?.avatar ||
+                      "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
+                    }
+                    alt=""
+                  />
+                </div>
+                <div>
+                  {currentUser && (
+                    <h1 className={styles.user_name}>{currentUser.name}</h1>
+                  )}
+                  {currentUser && (
+                    <h1 className={styles.user_number}>{currentUser.phone}</h1>
+                  )}
+                </div>
               </div>
-              <div>
-                <div>Name</div>
-                <div>number</div>
-              </div>
-            </div>
+            </Link>
             <div className={styles.modal_bottom}>
               <Link to={"https://vk.com/settings"}>
                 <div className={styles.modal_links}>
@@ -87,13 +127,13 @@ const Navbar = () => {
                   <span className={styles.modal_links_}> Помощь</span>
                 </div>
               </Link>
-              <Link to={"/"}>
+              <button onClick={onClickExit} className={styles.btn_exit}>
                 <div className={styles.modal_links}>
-                  <FontAwesomeIcon icon={faSignOutAlt}  />
+                  <FontAwesomeIcon icon={faSignOutAlt} />
 
                   <span className={styles.modal_links_}> Выйти</span>
                 </div>
-              </Link>
+              </button>
             </div>
           </div>
           <div className={styles.overlow} onClick={closeModule}></div>

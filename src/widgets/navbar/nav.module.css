@@ -70,7 +70,7 @@
   border: none;
   background-color: #ffff;
   width: 68px;
-  height: 48px;
+  height: 50px;
   transition: 0.2s;
 }
 .nav_r button:hover {
@@ -95,6 +95,22 @@
     transform: translateY(0);
   }
 }
+.modal_top :hover {
+  background-color: rgb(221, 223, 225);
+}
+.user_name {
+  font-size: 13px;
+  padding-left: 10px;
+  font-weight: 500;
+  text-decoration: none;
+  color: #0d0c22;
+}
+.user_number {
+  text-decoration: none;
+  font-size: 13px;
+  padding-left: 10px;
+  color: #9e9ea7;
+}
 
 .modal {
   /* Ваш текущий стиль модального окна */
@@ -118,10 +134,12 @@
   width: 276px;
   display: flex;
   background-color: rgb(234, 237, 239);
+  align-items: center;
 }
 .modal_top img {
   width: 40px;
   border-radius: 50%;
+  height: 40px;
 }
 .modal_bottom {
   display: block;
@@ -152,5 +170,12 @@
 }
 
 .modal_bottom svg {
-  color: rgb(68, 123, 186)  ;
+  color: rgb(68, 123, 186);
+}
+.btn_exit {
+  border: none;
+  background: none;
+  width: 100%;
+  text-align: left;
+  padding: 0;
 }

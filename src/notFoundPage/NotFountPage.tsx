@@ -1,9 +1,16 @@
-import React from 'react'
+import React from "react";
 
+import styles from "./notFoundPage.module.css";
+import img from "./image.png";
+import { Link } from "react-router-dom";
 const NotFountPage = () => {
   return (
-    <div>NotFountPage</div>
-  )
-}
+    <div className={styles.NotFountPage}>
+      <Link to={"./"}>
+        <img src={img} alt="NotFoundPage" />
+      </Link>
+    </div>
+  );
+};
 
-export default NotFountPage
+export default NotFountPage;

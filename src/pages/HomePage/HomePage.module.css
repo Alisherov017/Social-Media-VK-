@@ -76,13 +76,17 @@
   border-radius: 5px;
   text-decoration: none;
   cursor: pointer;
-  margin-left: 120px;
+  margin-left: 60px;
+  /* margin-left: 120px; */
 }
 
 .editProfileButton:hover {
   background-color: #bad5f9;
 }
 
+.location{
+  text-decoration:  none;
+}
 /* ! модалка */
 .modal {
   position: fixed;
@@ -175,4 +179,20 @@
 .modalContent p {
   color: rgb(66, 92, 122);
   font-weight: 500;
+}
+
+.profileHeader .buttonss {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 400px;
+}
+
+.only {
+  margin-top: 10px;
+}
+
+.buttons .addPost {
+  margin-top: 30px;
+  margin-left: 40px;
 }

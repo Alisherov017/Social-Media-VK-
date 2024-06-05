@@ -6,15 +6,15 @@ import { Home } from "@mui/icons-material";
 import NavbarLogin from "../widgets/navbar/NavbarLogin";
 import LoginPage from "../pages/auth/login/LoginPage";
 import RegisterPage from "../pages/auth/registor/RegisterPage";
+import NotFountPage from "../notFoundPage/NotFountPage";
 
 const MainLayout = () => {
-  const tokens = localStorage.getItem("tokens");
+  const currentUser = localStorage.getItem("currentUser");
   const location = useLocation();
-  console.log(location);
 
   return (
     <>
-      {tokens ? (
+      {!currentUser ? (
         <>
           {location.pathname === "/register" ? <RegisterPage /> : <LoginPage />}
         </>

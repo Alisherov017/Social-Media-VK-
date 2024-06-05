@@ -1,0 +1,109 @@
+.addProfilePage {
+  /* display: flex; */
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  max-width: 450px;
+  margin-left: 20px;
+  background-color: #f7f7f7;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.addProfilePage h1 {
+  display: flex;
+  justify-content: center;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.photoSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.profilePhoto {
+  width: 150px;
+  height: 150px;
+  border-radius: 5%;
+  object-fit: cover;
+  margin-bottom: 10px;
+}
+
+.photoInput {
+  display: none;
+}
+
+.changePhotoButton {
+  background-color: #4caf50;
+  color: white;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.changePhotoButton:hover {
+  background-color: #45a049;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+  width: 100%;
+}
+
+label {
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.cancelButton {
+  background-color: #f44336;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.cancelButton:hover {
+  background-color: #d32f2f;
+}
+
+.saveButton {
+  background-color: #4caf50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.saveButton:hover {
+  background-color: #45a049;
+}
+
+.cusBut {
+  display: flex;
+  justify-content: space-around;
+}

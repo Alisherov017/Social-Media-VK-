@@ -32,12 +32,7 @@ const LoginPage = () => {
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    // for (let key in user) {
-    //   if (!user[key]) {
-    //     alert("Some inputs are empty!");
-    //     return;
-    //   }
-    // }
+   
 
     const foundUser = users.find((item) => item.email === user.email);
 

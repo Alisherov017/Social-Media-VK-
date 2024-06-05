@@ -27,6 +27,7 @@ export const router = createBrowserRouter([
       { path: "/editHome", element: <EditedPage /> },
       { path: "/addPost", element: <AddPost /> },
       { path: "/friend", element: <Users /> },
+      { path: "/photo", element: <PostList /> },
     ],
   },
 ]);

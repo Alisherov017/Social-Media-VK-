@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./post.module.css";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
@@ -7,6 +7,8 @@ import PresentToAllIcon from "@mui/icons-material/PresentToAll";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { useAppDispatch, useAppSelector } from "../../helpers/Hooks";
 import { CardData, ProductType, ProfileType } from "../../types";
+import { useParams } from "react-router-dom";
+import { getCurrentUser, getOneUser } from "../../store/actions/user.actions";
 
 interface PostProps {
   post: CardData;
@@ -47,13 +49,28 @@ const Post: React.FC<PostProps> = ({ post, currentUser }) => {
     // setIsCommenting(false);
   };
 
+  const { oneUser } = useAppSelector((state) => state.users);
+  const { id: paramId } = useParams();
+  useEffect(() => {
+    if (paramId) {
+      dispatch(getOneUser(paramId));
+    } else {
+      const id = localStorage.getItem("currentUser");
+      id && dispatch(getCurrentUser(id));
+    }
+  }, [paramId, dispatch]);
+
+  function getUser() {
+    return paramId ? oneUser : currentUser;
+  }
+
   return (
     <div className={styles.vkCard}>
       <div className={styles.vkHeader}>
         <div className={styles.beka}>
-          <img src={currentUser?.avatar} className={styles.vkAvatar} />
+          <img src={getUser()?.avatar} className={styles.vkAvatar} />
           <div className={styles.vkUserDetails}>
-            <h3 className={styles.vkUsername}> {currentUser?.name} </h3>
+            <h3 className={styles.vkUsername}> {getUser()?.name} </h3>
             <p className={styles.vkPostTime}> {post.time} </p>
           </div>
         </div>

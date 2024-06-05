@@ -1,18 +1,15 @@
-import React from "react";
-import Post from "./Post";
-import { useAppSelector } from "../../helpers/Hooks";
-import { ProductType } from "../../types";
-import styles from "./post.module.css";
+import React, { useEffect } from "react";
+import { useAppDispatch, useAppSelector } from "../../helpers/consts";
+import { getUsers } from "../../store/actions/user.actions";
 
 const PostList: React.FC = () => {
+  
   return (
-    <>
-      {/* // <div className={styles.postList}>
-    //   {products.map((product: ProductType, index: number) => (
-      //     <Post key={index} post={product} />
-      //   ))}
-      // </div> */}
-    </>
+    <div className="container">
+      {/* {current?.posts?.map((item, index) => (
+        <Post post={item} key={index} currentUser={currentUser} />
+      ))} */}
+    </div>
   );
 };
 

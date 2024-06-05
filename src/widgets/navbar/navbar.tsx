@@ -23,12 +23,12 @@ const Navbar = () => {
       id && dispatch(getCurrentUser(id));
     }
   }, []);
-const [search, setSearch] = useState("");
-const [searchParams, setSearchParams] = useSearchParams();
-useEffect(() => {
-  setSearchParams({ q: search });
-  dispatch(getUsers());
-}, [search]);
+  const [search, setSearch] = useState("");
+  const [searchParams, setSearchParams] = useSearchParams();
+  useEffect(() => {
+    setSearchParams({ q: search });
+    dispatch(getUsers());
+  }, [search]);
 
   const { currentUser } = useAppSelector((state) => state.users);
 

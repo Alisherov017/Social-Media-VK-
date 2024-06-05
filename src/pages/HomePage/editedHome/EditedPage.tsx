@@ -14,9 +14,7 @@ const EditedPage = () => {
     password: "",
     phone: "",
     avatar: "",
-    background: "",
     city: "",
-    status: "",
     bd: "",
   });
 

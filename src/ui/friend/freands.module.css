@@ -1,71 +1,58 @@
-.card {
-    max-width: 300px;
-    border: 1px solid rgb(173, 173, 173);
-    border-radius: 10px;
-    display: flex;
-    position: relative;
-    margin-top: 10px;
-    margin-bottom: 10px;
-}
-.card a{
-    text-decoration: none;
-    color: black;
-    font-size: 16px;
+/* src/components/FriendRequestItem.module.css */
+.friend {
+  display: flex;
+  align-items: center;
+  padding: 5px 10px;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  margin-bottom: 10px;
+  background-color: #fff;
+  width: 60%;
+  height: 10%;
 }
 
-.usersAvatar {
-    height: 60px;
-    width: 60px;
-    overflow: hidden;
-    object-fit: cover;
-    border-radius: 50%;
+.friendIn {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 70%;
+  height: 10%;
 }
 
-.friendRequest {
-    bottom: 0;
-    left: 66px;
-    position: absolute;
+.friend .actions {
+  display: flex;
+  justify-content: end;
+  margin-bottom: 20px;
 }
 
-.friendInfo {
-    margin-left: 5px;
+.avatar .avatarImage {
+  width: 80px;
+  height: 80px;
+  background-color: #e0e0e0;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 10px;
+  object-fit: cover;
 }
 
-.addFriendClick {
-    font-size: 13px;
-    color: rgb(0, 182, 182);
-    position: absolute;
-    bottom: 0;
-    left: 66px;
-    cursor: pointer;
+.info {
+  flex: 1;
+}
+.phone {
+  color: rgba(0, 0, 0, 0.468);
+  font-weight: 500;
+  font-size: 12px;
+  display: flex;
+  gap: 10px;
 }
 .name {
-    font-size: 16px;
+  font-weight: bold;
+  font-size: 18px;
 }
 
-.volk {
-    font-size: 13px;
-    margin-top: 3px;
-}
-
-.delete {
-    background-color: rgb(117, 117, 117);
-    color: white;
-    padding: 5px;
-    border-radius: 5px;
-    position: absolute;
-    right: 10px;
-    top: 33px;
-    font-weight: 500;
-}
-
-.open {
-    background-color: #0079ff;
-    color: #fff;
-    border-radius: 5px;
-    padding: 5px;
-    position: absolute;
-    top: 5px;
-    right: 10px;
-    font-weight: 500;
+.actions button {
+  margin-right: -95px;
+  margin-top: -39px;
 }

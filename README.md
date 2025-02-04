@@ -1,18 +1,18 @@
 # VK Clone
 
+![Main Page](./public/assets/main.png)
+
 A feature-rich clone of the popular VK social network built using modern web technologies. This project demonstrates my expertise in frontend development, state management, and API integration while replicating core VK functionalities.
+
+## Screenshots
 
 ### Login Page
 
-![Login Page](./public//assets/login.png)
+![Login Page](./public/assets/login.png)
 
 ### Register Page
 
 ![Register Page](./public/assets/register.png)
-
-### Main Page
-
-![Main Page](./public/assets/main.png)
 
 ### Profile
 
@@ -27,11 +27,6 @@ A feature-rich clone of the popular VK social network built using modern web tec
 ![Friends](./public/assets/friends.png)
 
 ## Features
-
-### User Interface
-
-- Responsive and visually appealing design using custom CSS and Module CSS.
-- Optimized layout for various screen sizes and devices.
 
 ### State Management
 
@@ -48,11 +43,6 @@ A feature-rich clone of the popular VK social network built using modern web tec
 - Axios for handling HTTP requests and data fetching.
 - Uses JSON Server (db.json) for mock backend and local data storage.
 
-### Custom Styling
-
-- Handcrafted styles for a polished and modern look.
-- Uses Module CSS for better component encapsulation.
-
 ## Technologies Used
 
 - React
@@ -67,13 +57,13 @@ A feature-rich clone of the popular VK social network built using modern web tec
 1. **Clone the Repository:**
 
    ```sh
-   git clone https://github.com/YourUsername/YourRepository.git
+   git clone git@github.com:Alisherov017/Social-Media-VK-.git
    ```
 
 2. **Navigate to the Project Directory:**
 
    ```sh
-   cd YourRepository
+   cd Social-Media-VK-
    ```
 
 3. **Install Dependencies:**
@@ -85,7 +75,7 @@ A feature-rich clone of the popular VK social network built using modern web tec
 4. **Start the JSON Server:**
 
    ```sh
-   npx json-server --watch db.json --port 5000
+   npm run server
    ```
 
 5. **Run the Development Server:**
@@ -93,11 +83,15 @@ A feature-rich clone of the popular VK social network built using modern web tec
    npm start
    ```
 
-The application will be available at [http://localhost:3000/](http://localhost:3000/), and the mock backend will be available at [http://localhost:5000/](http://localhost:5000/).
+The application and the mock backend will both be available at [http://localhost:3000/](http://localhost:3000/).
 
-## Screenshots
+### API Endpoint
 
-(Add screenshots of your project here, including images of the login page, profile page, feed, etc.)
+Since the server runs on port **3000**, ensure API requests are correctly configured:
+
+```js
+export const API = "http://localhost:3000/users";
+```
 
 ## Challenges Faced
 

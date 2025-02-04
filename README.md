@@ -4,11 +4,11 @@ A feature-rich clone of the popular VK social network built using modern web tec
 
 ### Login Page
 
-![Login Page](screenshots/login-page.png)
+![Login Page](./public//assets/login.png)
 
-### Profile Page
+### Register Page
 
-![Profile Page](screenshots/profile-page.png)
+![Profile Page](./public/assets/register.png)
 
 ### Feed
 

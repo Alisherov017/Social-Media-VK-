@@ -1,46 +1,113 @@
-# Getting Started with Create React App
+# VK Clone
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A feature-rich clone of the popular VK social network built using modern web technologies. This project demonstrates my expertise in frontend development, state management, and API integration while replicating core VK functionalities.
 
-## Available Scripts
+### Login Page
 
-In the project directory, you can run:
+![Login Page](screenshots/login-page.png)
 
-### `npm start`
+### Profile Page
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+![Profile Page](screenshots/profile-page.png)
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### Feed
 
-### `npm test`
+![Feed](screenshots/feed.png)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Features
 
-### `npm run build`
+### User Interface
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- Responsive and visually appealing design using custom CSS and Module CSS.
+- Optimized layout for various screen sizes and devices.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### State Management
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- Efficient and scalable state management with Redux Toolkit.
+- Centralized state logic for seamless data flow across components.
 
-### `npm run eject`
+### TypeScript Integration
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+- Ensures type safety and improved code maintainability.
+- Reduces runtime errors and enhances development efficiency.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### API Integration
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+- Axios for handling HTTP requests and data fetching.
+- Uses JSON Server (db.json) for mock backend and local data storage.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+### Custom Styling
 
-## Learn More
+- Handcrafted styles for a polished and modern look.
+- Uses Module CSS for better component encapsulation.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Technologies Used
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- React
+- Redux Toolkit
+- TypeScript
+- Axios
+- Module CSS
+- JSON Server (db.json)
+
+## How to Run the Project
+
+1. **Clone the Repository:**
+
+   ```sh
+   git clone https://github.com/YourUsername/YourRepository.git
+   ```
+
+2. **Navigate to the Project Directory:**
+
+   ```sh
+   cd YourRepository
+   ```
+
+3. **Install Dependencies:**
+
+   ```sh
+   npm install
+   ```
+
+4. **Start the JSON Server:**
+
+   ```sh
+   npx json-server --watch db.json --port 5000
+   ```
+
+5. **Run the Development Server:**
+   ```sh
+   npm start
+   ```
+
+The application will be available at [http://localhost:3000/](http://localhost:3000/), and the mock backend will be available at [http://localhost:5000/](http://localhost:5000/).
+
+## Screenshots
+
+(Add screenshots of your project here, including images of the login page, profile page, feed, etc.)
+
+## Challenges Faced
+
+- Ensuring type safety with TypeScript while working on dynamic components.
+- Managing complex state logic efficiently with Redux Toolkit.
+- Implementing responsive design across various screen sizes.
+- Simulating backend behavior using JSON Server.
+
+## Future Improvements
+
+- Full backend integration for real-time data updates (e.g., Firebase, Node.js).
+- Enhancing user experience with animations and transitions.
+- Implementing advanced features such as messaging, notifications, and media uploads.
+- Adding dark mode and accessibility improvements.
+
+## Contact
+
+Feel free to reach out if you have any questions or feedback:
+
+- **Email:** r.alisherovdev@gmail.com
+- **GitHub:** [Alisherov017](https://github.com/Alisherov017)
+
+---
+
+_This project is for educational and portfolio purposes and is not affiliated with VK._
